@@ -1,0 +1,10 @@
+.masthead {
+  padding-top: 32rem;
+  padding-bottom: calc(10rem - 56px);
+  background: url("../img/headerpie.jpg") no-repeat center center fixed;
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
