@@ -1,13 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import PropTypes from "prop-types";
 
-import { userActions } from "_actions/user.actions";
+// import { userActions } from "../_actions/user.actions";
+import { register } from "../_actions/user.actions";
+import { registerFields } from "../_constants/register.constants";
+import RegisterForm from "../_components/RegistrationForm";
+import { userService } from "../_services/user.services";
 
 class RegisterPage extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       user: {
         email: "",
@@ -16,112 +21,42 @@ class RegisterPage extends React.Component {
       },
       submitted: false
     };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
-    const { name, value } = event.target;
-    const { user } = this.state;
-    this.setState({
-      user: {
-        ...user,
-        [name]: value
-      }
+  handleSubmit(values) {
+    console.log(">>>>>>>>>>", this.props.actions, values);
+    // this.props.dispatch(this.props.userActions.register(values));
+    this.props.register(values).then(() => {
+      this.props.history.push("/login");
+      // dispatch(alertActions.success("Registration successful"));
     });
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-
-    this.setState({ submitted: true });
-    const { user } = this.state;
-    const { dispatch } = this.props;
-    if (user.email && user.username && user.password) {
-      dispatch(userActions.register(user));
-    }
+    console.log("Try me try me");
   }
 
   render() {
-    const { registering } = this.props;
-    const { user, submitted } = this.state;
     return (
-      <div className="col-md-6 col-md-offset-3">
-        <h2>Register</h2>
-        <form name="form" onSubmit={this.handleSubmit}>
-          <div
-            className={
-              "form-group" + (submitted && !user.email ? " has-error" : "")
-            }
-          >
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              className="form-control"
-              name="email"
-              value={user.email}
-              onChange={this.handleChange}
-            />
-            {submitted &&
-              !user.email && (
-                <div className="help-block">Email is required</div>
-              )}
-          </div>
-
-          <div
-            className={
-              "form-group" + (submitted && !user.username ? " has-error" : "")
-            }
-          >
-            <label htmlFor="username">Username</label>
-            <input
-              type="text"
-              className="form-control"
-              name="username"
-              value={user.username}
-              onChange={this.handleChange}
-            />
-            {submitted &&
-              !user.username && (
-                <div className="help-block">Username is required</div>
-              )}
-          </div>
-          <div
-            className={
-              "form-group" + (submitted && !user.password ? " has-error" : "")
-            }
-          >
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              className="form-control"
-              name="password"
-              value={user.password}
-              onChange={this.handleChange}
-            />
-            {submitted &&
-              !user.password && (
-                <div className="help-block">Password is required</div>
-              )}
-          </div>
-          <div className="form-group">
-            <button className="btn btn-primary">Register</button>
-            {registering && (
-              <img
-                src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
-                alt=""
-              />
-            )}
-            <Link to="/login" className="btn btn-link">
-              Cancel
-            </Link>
-          </div>
-        </form>
+      <div className="row">
+        <div className="col-md-offset-4 col-md-4 whiteback">
+          <RegisterForm
+            onSubmit={this.handleSubmit.bind(this)}
+            // isSubmitting={this.props.user.request.sendRequest}
+          />
+        </div>
       </div>
     );
   }
 }
+
+RegisterPage.PropTypes = {
+  dispatch: PropTypes.isRequired,
+  user: PropTypes.isRequired
+};
+
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     actions: bindActionCreators(register, dispatch)
+//   };
+// }
 
 function mapStateToProps(state) {
   const { registering } = state.registration;
@@ -129,6 +64,8 @@ function mapStateToProps(state) {
     registering
   };
 }
-
-const connectedRegisterPage = connect(mapStateToProps)(RegisterPage);
+// const register = userService.register;
+const connectedRegisterPage = connect(mapStateToProps, { register })(
+  RegisterPage
+);
 export { connectedRegisterPage as RegisterPage };
