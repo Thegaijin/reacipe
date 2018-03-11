@@ -3,10 +3,10 @@ import { Router, Route } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { history } from "_helpers/history";
-import { alertActions } from "_actions/alert.actions";
+import * as alertActions from "../_actions/alert.actions";
 import { PrivateRoute } from "_components/PrivateRoute";
 import { Dashboard } from "Dashboard/Dashboard";
-// import { HomePage } from "HomePage/HomePage";
+import HomePage from "HomePage/HomePage";
 import { LoginPage } from "LoginPage/LoginPage";
 import { RegisterPage } from "RegisterPage/RegisterPage";
 
@@ -24,15 +24,17 @@ class App extends React.Component {
   render() {
     const { alert } = this.props;
     return (
-      <div className="jumbotron">
+      <div>
         <div className="container">
-          <div className="col-sm-8 col-sm-offset-2">
+          <div className="col-sm-offset-2">
             {alert.message && (
               <div className={`alert ${alert.type}`}>{alert.message}</div>
             )}
             <Router history={history}>
               <div>
-                <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                {/* <PrivateRoute exact path="/dashboard" component={Dashboard} /> */}
+                <Route path="/dashboard" component={Dashboard} />
+                <Route exact path="/" component={HomePage} />
                 <Route path="/login" component={LoginPage} />
                 <Route path="/register" component={RegisterPage} />
               </div>
