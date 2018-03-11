@@ -1,14 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+// import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
 
-// import { userActions } from "../_actions/user.actions";
 import { register } from "../_actions/user.actions";
-import { registerFields } from "../_constants/register.constants";
 import RegisterForm from "../_components/RegistrationForm";
-import { userService } from "../_services/user.services";
 
 class RegisterPage extends React.Component {
   constructor(props) {
@@ -24,10 +20,11 @@ class RegisterPage extends React.Component {
   }
 
   handleSubmit(values) {
-    console.log(">>>>>>>>>>", this.props.actions, values);
+    console.log(">>>>>>>>>>", values);
+    console.log("****************", values.username, values.password);
     // this.props.dispatch(this.props.userActions.register(values));
     this.props.register(values).then(() => {
-      this.props.history.push("/login");
+      // this.props.history.push("/login");
       // dispatch(alertActions.success("Registration successful"));
     });
     console.log("Try me try me");
