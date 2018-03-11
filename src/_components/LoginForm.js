@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Field, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
 
-import { required, email, username, password } from "_helpers/validators";
+import { required, username, password } from "_helpers/validators";
 
 const createRenderer = render => ({ input, meta, label }) => (
   <div
@@ -25,20 +25,13 @@ const RenderInput = createRenderer((input, type, label) => (
     className="pa2 ba b--black-40 w-100"
   />
 ));
-const RegisterForm = props => {
+
+const LoginForm = props => {
   const { handleSubmit, pristine, isSubmitting } = props;
 
   return (
     <div className="auth">
       <form className="form-signin" onSubmit={handleSubmit}>
-        <Field
-          name="email"
-          id="email"
-          type="email"
-          component={RenderInput}
-          label="Email"
-          validate={[required, email]}
-        />
         <Field
           name="username"
           id="username"
@@ -61,26 +54,25 @@ const RegisterForm = props => {
           type="submit"
         >
           {isSubmitting ? <i className="fa fa-spin fa-spinner" /> : null}
-          Register
+          Login
         </button>
       </form>
       <p className="auth_option">
-        Already have an account?
-        <Link to="/login" className="btn-lg">
-          Login
+        Don't have an account?
+        <Link to="/register" className="btn-lg">
+          Register
         </Link>
       </p>
     </div>
   );
 };
 
-RegisterForm.propTypes = {
+LoginForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  pristine: PropTypes.func.isRequired
+  onSubmit: PropTypes.func.isRequired
   // isSubmitting: PropTypes.func.isRequired
 };
 
 export default reduxForm({
-  form: "registrationform"
-})(RegisterForm);
+  form: "loginform"
+})(LoginForm);
