@@ -1,11 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import { Link } from 'react-router-dom';
 import Collapsible from 'react-collapsible';
 
 import Layout from '../Layout/Layout';
 import { CategoryPage } from '../CategoryPage/CategoryPage';
-// import eachCategory from '../CategoryPage/eachCategory';
 import { viewCategory } from '../_actions/category.actions';
 
 class Dashboard extends React.Component {
