@@ -1,21 +1,22 @@
-import React from "react";
-import { Router, Route } from "react-router-dom";
-import { connect } from "react-redux";
+import React from 'react';
+import { Router, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import { history } from "_helpers/history";
-import * as alertActions from "../_actions/alert.actions";
-import { PrivateRoute } from "_components/PrivateRoute";
-import { Dashboard } from "Dashboard/Dashboard";
-import HomePage from "HomePage/HomePage";
-import { LoginPage } from "LoginPage/LoginPage";
-import { RegisterPage } from "RegisterPage/RegisterPage";
+import { history } from '../_helpers/history';
+import * as alertActions from '../_actions/alert.actions';
+// import { PrivateRoute } from '../_components/PrivateRoute';
+import { Dashboard } from '../Dashboard/Dashboard';
+import HomePage from '../HomePage/HomePage';
+import { LoginPage } from '../LoginPage/LoginPage';
+import { RegisterPage } from '../RegisterPage/RegisterPage';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     const { dispatch } = this.props;
-    history.listen((location, action) => {
+    history.listen(() => {
+      // location, action
       // clear alert on location change
       dispatch(alertActions.clear());
     });
@@ -27,13 +28,11 @@ class App extends React.Component {
       <div>
         <div className="container">
           <div className="col-sm-offset-2">
-            {alert.message && (
-              <div className={`alert ${alert.type}`}>{alert.message}</div>
-            )}
+            {alert.message && <div className={`alert ${alert.type}`}>{alert.message}</div>}
             <Router history={history}>
               <div>
-                <PrivateRoute exact path="/dashboard" component={Dashboard} />
-                {/* <Route path="/dashboard" component={Dashboard} /> */}
+                {/* <PrivateRoute exact path="/dashboard" component={Dashboard} /> */}
+                <Route path="/dashboard" component={Dashboard} />
                 <Route exact path="/" component={HomePage} />
                 <Route path="/login" component={LoginPage} />
                 <Route path="/register" component={RegisterPage} />
@@ -49,7 +48,7 @@ class App extends React.Component {
 function mapStateToProps(state) {
   const { alert } = state;
   return {
-    alert
+    alert,
   };
 }
 
