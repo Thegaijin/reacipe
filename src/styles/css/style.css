@@ -35,3 +35,89 @@ input {
 .auth p {
   color: white;
 }
+
+.menu {
+  float: right;
+  margin-top: 8px;
+}
+
+.menu li {
+  display: inline;
+}
+
+.menu li + li {
+  margin-left: 35px;
+}
+
+.menu li a {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* .container {
+  width: 940px;
+  margin: 0 auto;
+} */
+/* React modal CSS */
+.ReactModal__Content {
+  opacity: 0;
+}
+
+.ReactModal__Content--after-open {
+  opacity: 1;
+  transition: opacity 150ms;
+}
+
+.ReactModal__Content--before-close {
+  opacity: 0;
+}
+
+.col-sm-4 {
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: 1rem;
+}
+.col-sm-8 {
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: 1rem;
+}
+
+.block {
+  width: 200px;
+  height: 2rem;
+  margin: 0.5rem;
+  display: inline-block;
+  background: #00cc99;
+  border-radius: 8px;
+}
+/* #4E5842 */
+
+.iconpos {
+  margin: 0 auto;
+}
+
+.Collapsible {
+  border-radius: 8px;
+  border-color: black;
+  text-align: center;
+  font-family: "Playfair Display";
+}
+
+.Collapsible__contentInner {
+  background: white;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.CustomTriggerCSS {
+  background: #00cc99;
+  width: 100%;
+}
+
+.block tr {
+  text-align: center;
+}
+
+.table {
+  margin: 0 auto;
+}

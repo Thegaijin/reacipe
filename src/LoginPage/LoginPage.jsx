@@ -1,8 +1,8 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 
-import { login } from "../_actions/user.actions";
-import LoginForm from "_components/LoginForm";
+import { login } from '../_actions/user.actions';
+import LoginForm from '../_components/LoginForm';
 
 class LoginPage extends React.Component {
   constructor(props) {
@@ -12,25 +12,14 @@ class LoginPage extends React.Component {
     // this.props.dispatch(userActions.logout());
 
     this.state = {
-      username: "",
-      password: "",
-      submitted: false
+      username: '',
+      password: '',
+      submitted: false,
     };
   }
 
   handleSubmit(values) {
-    console.log(">>>>>>>>>>", values);
-    console.log(
-      "/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*",
-      values.username,
-      values.password
-    );
-    // this.props.dispatch(this.props.userActions.register(values));
-    this.props.login(values).then(() => {
-      // this.props.history.push("/dashboard");
-      // dispatch(alertActions.success("Registration successful"));
-    });
-    console.log("Log in log in");
+    this.props.login(values);
   }
   render() {
     return (
@@ -46,7 +35,7 @@ class LoginPage extends React.Component {
 function mapStateToProps(state) {
   const { loggingIn } = state.authentication;
   return {
-    loggingIn
+    loggingIn,
   };
 }
 
