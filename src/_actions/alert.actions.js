@@ -1,10 +1,10 @@
-import { alertConstants } from "_constants/alert.constants";
+import { alertConstants } from '../_constants/alert.constants';
 
-export const success = message => {
+export const success = (message) => {
   return { type: alertConstants.SUCCESS, message };
 };
 
-export const error = message => {
+export const error = (message) => {
   return { type: alertConstants.ERROR, message };
 };
 
