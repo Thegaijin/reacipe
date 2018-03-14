@@ -1,9 +1,9 @@
 import { categoryConstants } from '../_constants/category.constants';
 
 const token = localStorage.getItem('token');
-const initialState = token ? { creatingcategory: true, token } : {};
+const initialState = token ? { creatingcategory: true, token } : [];
 
-export function createcategory(state = initialState, action) {
+export function createCategory(state = initialState, action) {
   switch (action.type) {
     case categoryConstants.CREATE_CATEGORY_REQUEST:
       return {
@@ -22,7 +22,7 @@ export function createcategory(state = initialState, action) {
   }
 }
 
-export function viewcategoryreducer(state = [], action) {
+export function viewCategoryReducer(state = [], action) {
   switch (action.type) {
     case categoryConstants.VIEW_ALL_CATEGORIES_REQUEST:
       return {
@@ -35,6 +35,55 @@ export function viewcategoryreducer(state = [], action) {
         ...action,
       };
     case categoryConstants.VIEW_ALL_CATEGORIES_FAILURE:
+      return {
+        error: action.error,
+      };
+    default:
+      return state;
+  }
+}
+
+export function editCategoryReducer(state = [], action) {
+  switch (action.type) {
+    case categoryConstants.EDIT_CATEGORY_REQUEST:
+      console.log('@@@@@@@@@@@@@@@@@@@@@#######################', action);
+      return {
+        loading: true,
+      };
+    case categoryConstants.EDIT_CATEGORY_SUCCESS:
+      console.log('$$$$$$$$$$$$$$$$$$$$$$$', action);
+      return {
+        ...state,
+        ...action,
+      };
+    case categoryConstants.EDIT_CATEGORY__FAILURE:
+      return {
+        error: action.error,
+      };
+    case categoryConstants.LOAD_CURRENT_CATEGORY:
+      return {
+        ...state,
+        currentCategory: action.userCategory,
+      };
+    default:
+      return state;
+  }
+}
+
+export function deleteCategoryReducer(state = [], action) {
+  switch (action.type) {
+    case categoryConstants.DELETE_CATEGORY_REQUEST:
+      console.log('@@@@@@@@@@@@@@@@@@@@@delete#######################', action);
+      return {
+        loading: true,
+      };
+    case categoryConstants.DELETE_CATEGORY_SUCCESS:
+      console.log('$$$$$$$$$$$$delete$$$$$$$$$$$', action);
+      return {
+        ...state,
+        ...action,
+      };
+    case categoryConstants.DELETE_CATEGORY__FAILURE:
       return {
         error: action.error,
       };

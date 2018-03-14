@@ -1,9 +1,14 @@
 import { categoryConstants } from '../_constants/category.constants';
-import { createCategoryAPIcall, getCategoriesAPIcall } from '../_services/category.services';
+import {
+  createCategoryAPICall,
+  getCategoriesAPICall,
+  editCategoryAPICall,
+  deleteCategoryAPICall,
+} from '../_services/category.services';
 import * as alertActions from '../_actions/alert.actions';
 // import { history } from '../_helpers/history';
 
-export function createcategory(category) {
+export function createCategory(category) {
   function request() {
     return { type: categoryConstants.CREATE_CATEGORY_REQUEST, category };
   }
@@ -15,13 +20,13 @@ export function createcategory(category) {
   }
   return (dispatch) => {
     dispatch(request(category));
-    return createCategoryAPIcall(category).then(
+    return createCategoryAPICall(category).then(
       () => {
         dispatch(success());
         dispatch(alertActions.success('Category created successfully'));
       },
       (error) => {
-        console.log('%%%%%%%%%%%%%%%%%%%%%%%%%', error.data);
+        console.log('%%%%%%%%%%%%%create%%%%%%%%%%%%', error.data);
         dispatch(failure(error));
         // dispatch(alertActions.error(error));
       },
@@ -44,15 +49,83 @@ export function viewCategory() {
   }
   return (dispatch) => {
     dispatch(request());
-    return getCategoriesAPIcall().then(
+    return getCategoriesAPICall().then(
       (response) => {
         dispatch(success(response.data[0]));
         console.log(response.data[0]);
-        console.log('^^^^%%%%%%%%%%&&&&&&&', response.data);
+        console.log('^^^^%%%%%%%%view%%&&&&&&&', response.data);
         dispatch(alertActions.success('Your categories'));
       },
       (error) => {
-        console.log('%%%%%%%%%%%%%%%%%%%%%%%%%', error.data);
+        console.log('%%%%%%%%%%%%view%%%%%%%%%%%%%', error.data);
+        dispatch(failure(error));
+        // dispatch(alertActions.error(error));
+      },
+    );
+  };
+}
+
+export function currentCategory(category) {
+  function putToStoreCategory(userCategory) {
+    return {
+      type: categoryConstants.LOAD_CURRENT_CATEGORY,
+      userCategory,
+    };
+  }
+  return (dispatch) => {
+    dispatch(putToStoreCategory(category));
+  };
+}
+export function editCategory(category) {
+  console.log('$%$%%$%$%$%$%$%$%$@@@@@@', category);
+  function request() {
+    return { type: categoryConstants.EDIT_CATEGORY_REQUEST, category };
+  }
+  function success() {
+    return {
+      type: categoryConstants.EDIT_CATEGORY_SUCCESS,
+      category,
+    };
+  }
+  function failure() {
+    return { type: categoryConstants.EDIT_CATEGORY_FAILURE, category };
+  }
+  return (dispatch) => {
+    dispatch(request(category));
+    return editCategoryAPICall(category).then(
+      (response) => {
+        dispatch(success());
+        console.log('^^^^%%%%%%%%edit%%&&&&&&&', response.data);
+        dispatch(alertActions.success('Your categories'));
+      },
+      (error) => {
+        console.log('%%%%%%%%%%%%edit%%%%%%%%%%%%%', error.data);
+        dispatch(failure(error));
+        // dispatch(alertActions.error(error));
+      },
+    );
+  };
+}
+
+export function deleteCategory(category) {
+  function request() {
+    return { type: categoryConstants.DELETE_CATEGORY_REQUEST, category };
+  }
+  function success() {
+    return { type: categoryConstants.DELETE_CATEGORY_SUCCESS, category };
+  }
+  function failure() {
+    return { type: categoryConstants.DELETE_CATEGORY_FAILURE, category };
+  }
+  return (dispatch) => {
+    dispatch(request(category));
+    return deleteCategoryAPICall(category).then(
+      () => {
+        dispatch(success());
+        dispatch(alertActions.success('Category deleted successfully'));
+      },
+      (error) => {
+        console.log('%%%%%%%%%%%%%delete%%%%%%%%%%%%', error.data);
         dispatch(failure(error));
         // dispatch(alertActions.error(error));
       },
