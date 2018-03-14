@@ -4,18 +4,29 @@ import Collapsible from 'react-collapsible';
 
 import Layout from '../Layout/Layout';
 import { CategoryPage } from '../CategoryPage/CategoryPage';
-import { viewCategory } from '../_actions/category.actions';
+import { viewCategory, currentCategory } from '../_actions/category.actions';
+import { EditCategory } from '../CategoryPage/EditCategoryPage';
 
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.props.viewCategory();
-    this.state = {};
+    this.state = {
+      categories: [],
+      categoriesOpen: false,
+    };
   }
+  mapCategories = (category) => {
+    this.setState({
+      categoriesOpen: !this.state.categoriesOpen,
+    });
+    this.props.currentCategory(category);
+  };
 
   render() {
     const { categories } = this.props;
-    console.log('_-_-_-_-_-_-_-_-_-', categories);
+    const { categoriesOpen } = this.state;
+    console.log('_-_-_-_-_-_-_-_-_-', this.state.categoriesOpen);
     return (
       <Layout>
         <div>
@@ -37,22 +48,29 @@ class Dashboard extends React.Component {
                       <tbody>
                         <tr>
                           <td>
-                            <a href="">
-                              <i className="fa fa-folder-open fa-lg iconpos" aria-hidden="true" />
-                            </a>
+                            <div>
+                              <button type="button" className="btn-lg btn-sm">
+                                view
+                              </button>
+                            </div>
                           </td>
                           <td>
-                            <a href="">
-                              <i
-                                className="fa fa-pencil-square-o fa-lg iconpos"
-                                aria-hidden="true"
-                              />
-                            </a>
+                            <div>
+                              <button
+                                type="button"
+                                onClick={() => this.mapCategories(category)}
+                                className="btn-lg btn-primary btn-sm"
+                              >
+                                Edit
+                              </button>
+                            </div>
                           </td>
                           <td>
-                            <a href="">
-                              <i className="fa fa-trash fa-lg iconpos" aria-hidden="true" />
-                            </a>
+                            <div>
+                              <button type="button" className="btn-lg btn-danger btn-sm">
+                                delete
+                              </button>
+                            </div>
                           </td>
                         </tr>
                       </tbody>
@@ -64,7 +82,7 @@ class Dashboard extends React.Component {
               <div> No Categories </div>
             )}
           </div>
-          <div className="col-sm-8">recipes</div>
+          <div className="col-sm-8">{!!categoriesOpen && <EditCategory />}</div>
         </div>
       </Layout>
     );
@@ -73,9 +91,9 @@ class Dashboard extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    categories: state.viewcategoryreducer.categories,
+    categories: state.viewCategoryReducer.categories,
   };
 }
 
-const connectedDashboard = connect(mapStateToProps, { viewCategory })(Dashboard);
+const connectedDashboard = connect(mapStateToProps, { viewCategory, currentCategory })(Dashboard);
 export { connectedDashboard as Dashboard };

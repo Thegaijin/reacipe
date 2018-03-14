@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
 
-import { createcategory } from '../_actions/category.actions';
+import { createCategory } from '../_actions/category.actions';
 import CategoryForm from '../_components/CategoryForm';
 
 class CategoryPage extends React.Component {
@@ -29,7 +29,7 @@ class CategoryPage extends React.Component {
   handleSubmit(values) {
     console.log('>>>>>>>>>>', values);
     console.log('/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*', values.category_name, values.description);
-    this.props.createcategory(values);
+    this.props.createCategory(values);
   }
   render() {
     return (
@@ -83,5 +83,5 @@ class CategoryPage extends React.Component {
   }
 }
 
-const connectedCategoryPage = connect(null, { createcategory })(CategoryPage);
+const connectedCategoryPage = connect(null, { createCategory })(CategoryPage);
 export { connectedCategoryPage as CategoryPage };

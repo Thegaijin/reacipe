@@ -67,6 +67,7 @@ input {
 .ReactModal__Content--after-open {
   opacity: 1;
   transition: opacity 150ms;
+  background: white;
 }
 
 .ReactModal__Content--before-close {
