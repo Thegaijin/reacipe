@@ -1,9 +1,6 @@
 import { categoryConstants } from '../_constants/category.constants';
 
-const token = localStorage.getItem('token');
-const initialState = token ? { creatingcategory: true, token } : [];
-
-export function createCategory(state = initialState, action) {
+export function createCategory(state = [], action) {
   switch (action.type) {
     case categoryConstants.CREATE_CATEGORY_REQUEST:
       return {

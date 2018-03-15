@@ -4,15 +4,19 @@ import Collapsible from 'react-collapsible';
 
 import Layout from '../Layout/Layout';
 import { CategoryPage } from '../CategoryPage/CategoryPage';
-import { viewCategory, currentCategory } from '../_actions/category.actions';
+import { viewCategory, currentCategory, deleteCategory } from '../_actions/category.actions';
+import { viewRecipes, getRecipes } from '../_actions/recipe.actions';
 import { EditCategory } from '../CategoryPage/EditCategoryPage';
+import { RecipePage } from '../RecipePage/RecipePage';
 
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.props.viewCategory();
+    this.props.viewRecipes();
     this.state = {
       categories: [],
+      recipes: [],
       categoriesOpen: false,
     };
   }
@@ -23,17 +27,30 @@ class Dashboard extends React.Component {
     this.props.currentCategory(category);
   };
 
+  mapRecipes = (recipe) => {};
+
+  deleteACategory = (category) => {
+    this.props.deleteCategory(category);
+  };
+
+  viewACategoriesRecipes = (categoryId) => {
+    this.props.viewRecipes(categoryId);
+  };
+
   render() {
-    const { categories } = this.props;
+    const { categories, recipes } = this.props;
     const { categoriesOpen } = this.state;
     console.log('_-_-_-_-_-_-_-_-_-', this.state.categoriesOpen);
     return (
       <Layout>
         <div>
+          <br />
+          <br />
           <p>You're logged into Yummy Recipes</p>
-          <h3>Let's get cooking</h3>
+          <h3>Welcome</h3>
         </div>
         <div className="row">
+          {/* Categories */}
           <div className="col-sm-4">
             Categories
             <br />
@@ -49,7 +66,14 @@ class Dashboard extends React.Component {
                         <tr>
                           <td>
                             <div>
-                              <button type="button" className="btn-lg btn-sm">
+                              <button
+                                type="button"
+                                onClick={this.viewACategoriesRecipes.bind(
+                                  this,
+                                  category.category_id,
+                                )}
+                                className="btn-lg btn-sm"
+                              >
                                 view
                               </button>
                             </div>
@@ -65,9 +89,13 @@ class Dashboard extends React.Component {
                               </button>
                             </div>
                           </td>
-                          <td>
+                          <td data-id={category.recipes}>
                             <div>
-                              <button type="button" className="btn-lg btn-danger btn-sm">
+                              <button
+                                type="button"
+                                onClick={() => this.deleteACategory(category)}
+                                className="btn-lg btn-danger btn-sm"
+                              >
                                 delete
                               </button>
                             </div>
@@ -82,7 +110,62 @@ class Dashboard extends React.Component {
               <div> No Categories </div>
             )}
           </div>
-          <div className="col-sm-8">{!!categoriesOpen && <EditCategory />}</div>
+          {/* Recipes */}
+          <div className="col-sm-8">
+            <div>
+              {!!categoriesOpen && <EditCategory />}
+              <div>
+                recipes
+                <br />
+                <RecipePage />
+                <br />
+                <div className="container">
+                  <div className="row">
+                    <div className="col-sm">
+                      {recipes && recipes.length > 0 ? (
+                        recipes.map(recipe => (
+                          <div className="block" key={recipe.recipe_id}>
+                            <Collapsible trigger={recipe.recipe_name}>
+                              <p>{recipe.ingredients}</p>
+                              <table>
+                                <tbody>
+                                  <tr>
+                                    <td>
+                                      <div>
+                                        <button type="button" className="btn-lg btn-sm">
+                                          view
+                                        </button>
+                                      </div>
+                                    </td>
+                                    <td>
+                                      <div>
+                                        <button type="button" className="btn-lg btn-primary btn-sm">
+                                          Edit
+                                        </button>
+                                      </div>
+                                    </td>
+                                    <td data-id={recipe.recipe_id}>
+                                      <div>
+                                        <button type="button" className="btn-lg btn-danger btn-sm">
+                                          delete
+                                        </button>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </Collapsible>
+                          </div>
+                        ))
+                      ) : (
+                        <div> No recipes </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </Layout>
     );
@@ -90,10 +173,18 @@ class Dashboard extends React.Component {
 }
 
 function mapStateToProps(state) {
+  console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>', state.viewCategoryReducer.categories);
+  console.log('@@@@@@@@@@@@@@@@@@@recipes@@@@@@@@@@@@@@@@@>>>>>', state.viewRecipeReducer.recipes);
   return {
     categories: state.viewCategoryReducer.categories,
+    recipes: state.viewRecipeReducer.recipes,
   };
 }
 
-const connectedDashboard = connect(mapStateToProps, { viewCategory, currentCategory })(Dashboard);
+const connectedDashboard = connect(mapStateToProps, {
+  viewCategory,
+  currentCategory,
+  deleteCategory,
+  viewRecipes,
+})(Dashboard);
 export { connectedDashboard as Dashboard };

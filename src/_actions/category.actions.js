@@ -6,7 +6,7 @@ import {
   deleteCategoryAPICall,
 } from '../_services/category.services';
 import * as alertActions from '../_actions/alert.actions';
-// import { history } from '../_helpers/history';
+import { history } from '../_helpers/history';
 
 export function createCategory(category) {
   function request() {
@@ -23,6 +23,8 @@ export function createCategory(category) {
     return createCategoryAPICall(category).then(
       () => {
         dispatch(success());
+        // history.push('/Dashboard');
+        window.location.reload();
         dispatch(alertActions.success('Category created successfully'));
       },
       (error) => {
@@ -122,6 +124,7 @@ export function deleteCategory(category) {
     return deleteCategoryAPICall(category).then(
       () => {
         dispatch(success());
+        window.location.reload();
         dispatch(alertActions.success('Category deleted successfully'));
       },
       (error) => {
