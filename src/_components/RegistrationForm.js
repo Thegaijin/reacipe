@@ -1,16 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Field, reduxForm } from "redux-form";
-import { Link } from "react-router-dom";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Field, reduxForm } from 'redux-form';
+import { Link } from 'react-router-dom';
 
-import { required, email, username, password } from "_helpers/validators";
+import { required, email, username, password } from '../_helpers/validators';
 
 const createRenderer = render => ({ input, meta, label }) => (
   <div
-    className={[
-      meta.error && meta.touched ? "error" : "",
-      meta.active ? "active" : ""
-    ].join(" ")}
+    className={[meta.error && meta.touched ? 'error' : '', meta.active ? 'active' : ''].join(' ')}
   >
     {render(input, label)}
     {meta.error && meta.touched && <span>{meta.error}</span>}
@@ -18,14 +15,9 @@ const createRenderer = render => ({ input, meta, label }) => (
 );
 
 const RenderInput = createRenderer((input, type, label) => (
-  <input
-    {...input}
-    placeholder={label}
-    type={type}
-    className="pa2 ba b--black-40 w-100"
-  />
+  <input {...input} placeholder={label} type={type} className="pa2 ba b--black-40 w-100" />
 ));
-const RegisterForm = props => {
+const RegisterForm = (props) => {
   const { handleSubmit, pristine, isSubmitting } = props;
 
   return (
@@ -77,10 +69,10 @@ const RegisterForm = props => {
 RegisterForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  pristine: PropTypes.func.isRequired
+  pristine: PropTypes.func.isRequired,
   // isSubmitting: PropTypes.func.isRequired
 };
 
 export default reduxForm({
-  form: "registrationform"
+  form: 'registrationform',
 })(RegisterForm);
