@@ -1,5 +1,9 @@
 import { recipeConstants } from '../_constants/recipe.constants';
-import { createRecipeAPIcall, getRecipesAPICall } from '../_services/recipe.services';
+import {
+  createRecipeAPIcall,
+  getRecipesAPICall,
+  deleteRecipeAPICall,
+} from '../_services/recipe.services';
 import * as alertActions from '../_actions/alert.actions';
 
 // export const recipeActions = {
@@ -71,6 +75,33 @@ export function viewRecipes(categoryId) {
       (error) => {
         console.log('%%%%%%%%%%%%%%%%%%%%%%%%%', error.data);
         // dispatch(failure(error));
+        // dispatch(alertActions.error(error));
+      },
+    );
+  };
+}
+
+export function deleteRecipe(recipe) {
+  function request() {
+    return { type: recipeConstants.DELETE_RECIPE_REQUEST, recipe };
+  }
+  function success() {
+    return { type: recipeConstants.DELETE_RECIPE_SUCCESS, recipe };
+  }
+  function failure() {
+    return { type: recipeConstants.DELETE_RECIPE_FAILURE, recipe };
+  }
+  return (dispatch) => {
+    dispatch(request(recipe));
+    return deleteRecipeAPICall(recipe).then(
+      () => {
+        dispatch(success());
+        window.location.reload();
+        dispatch(alertActions.success('Recipe deleted successfully'));
+      },
+      (error) => {
+        console.log('%%%%%%%%%%%%%delete%%%%%%%%%%%%', error.data);
+        dispatch(failure(error));
         // dispatch(alertActions.error(error));
       },
     );

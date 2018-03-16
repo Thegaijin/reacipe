@@ -5,7 +5,7 @@ import Collapsible from 'react-collapsible';
 import Layout from '../Layout/Layout';
 import { CategoryPage } from '../CategoryPage/CategoryPage';
 import { viewCategory, currentCategory, deleteCategory } from '../_actions/category.actions';
-import { viewRecipes, getRecipes } from '../_actions/recipe.actions';
+import { viewRecipes, deleteRecipe } from '../_actions/recipe.actions';
 import { EditCategory } from '../CategoryPage/EditCategoryPage';
 import { RecipePage } from '../RecipePage/RecipePage';
 
@@ -27,7 +27,7 @@ class Dashboard extends React.Component {
     this.props.currentCategory(category);
   };
 
-  mapRecipes = (recipe) => {};
+  // `mapRecipes = (recipe) => {};
 
   deleteACategory = (category) => {
     this.props.deleteCategory(category);
@@ -35,6 +35,10 @@ class Dashboard extends React.Component {
 
   viewACategoriesRecipes = (categoryId) => {
     this.props.viewRecipes(categoryId);
+  };
+
+  deleteARecipe = (recipe) => {
+    this.props.deleteRecipe(recipe);
   };
 
   render() {
@@ -61,53 +65,55 @@ class Dashboard extends React.Component {
                 <div className="block" key={category.category_id}>
                   <Collapsible trigger={category.category_name}>
                     <p>{category.description}</p>
-                    <table>
-                      <tbody>
-                        <tr>
-                          <td>
-                            <div>
-                              <button
-                                type="button"
-                                onClick={this.viewACategoriesRecipes.bind(
-                                  this,
-                                  category.category_id,
-                                )}
-                                className="btn-lg btn-sm"
-                              >
-                                <i className="fa fa-eye" aria-hidden="true" />
-                              </button>
-                            </div>
-                          </td>
-                          <td>
-                            <div>
-                              <button
-                                type="button"
-                                onClick={() => this.mapCategories(category)}
-                                className="btn-lg btn-primary btn-sm"
-                              >
-                                <i className="fa fa-pencil-square-o" aria-hidden="true" />
-                              </button>
-                            </div>
-                          </td>
-                          <td data-id={category.category_id}>
-                            <div>
-                              <RecipePage categoryId={category.category_id} />
-                            </div>
-                          </td>
-                          <td data-id={category.category_id}>
-                            <div>
-                              <button
-                                type="button"
-                                onClick={() => this.deleteACategory(category)}
-                                className="btn-lg btn-danger btn-sm"
-                              >
-                                <i className="fa fa-trash-o" aria-hidden="true" />
-                              </button>
-                            </div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+                    <div className="container-fluid">
+                      <table className="text-centered">
+                        <tbody>
+                          <tr>
+                            <td>
+                              <div>
+                                <button
+                                  type="button"
+                                  onClick={this.viewACategoriesRecipes.bind(
+                                    this,
+                                    category.category_id,
+                                  )}
+                                  className="btn-lg btn-sm"
+                                >
+                                  <i className="fa fa-eye" aria-hidden="true" />
+                                </button>
+                              </div>
+                            </td>
+                            <td>
+                              <div>
+                                <button
+                                  type="button"
+                                  onClick={() => this.mapCategories(category)}
+                                  className="btn-lg btn-primary btn-sm"
+                                >
+                                  <i className="fa fa-pencil-square-o" aria-hidden="true" />
+                                </button>
+                              </div>
+                            </td>
+                            <td data-id={category.category_id}>
+                              <div>
+                                <RecipePage categoryId={category.category_id} />
+                              </div>
+                            </td>
+                            <td data-id={category.category_id}>
+                              <div>
+                                <button
+                                  type="button"
+                                  onClick={() => this.deleteACategory(category)}
+                                  className="btn-lg btn-danger btn-sm"
+                                >
+                                  <i className="fa fa-trash-o" aria-hidden="true" />
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </Collapsible>
                 </div>
               ))
@@ -129,26 +135,38 @@ class Dashboard extends React.Component {
                           <div className="block" key={recipe.recipe_id}>
                             <Collapsible trigger={recipe.recipe_name}>
                               <p>{recipe.ingredients}</p>
-                              <table>
-                                <tbody>
-                                  <tr>
-                                    <td>
-                                      <div>
-                                        <button type="button" className="btn-lg btn-primary btn-sm">
-                                          <i className="fa fa-pencil-square-o" aria-hidden="true" />
-                                        </button>
-                                      </div>
-                                    </td>
-                                    <td data-id={recipe.recipe_id}>
-                                      <div>
-                                        <button type="button" className="btn-lg btn-danger btn-sm">
-                                          <i className="fa fa-trash-o" aria-hidden="true" />
-                                        </button>
-                                      </div>
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
+                              <div className="container-fluid">
+                                <table className="text-centered">
+                                  <tbody>
+                                    <tr>
+                                      <td>
+                                        <div>
+                                          <button
+                                            type="button"
+                                            className="btn-lg btn-primary btn-sm"
+                                          >
+                                            <i
+                                              className="fa fa-pencil-square-o"
+                                              aria-hidden="true"
+                                            />
+                                          </button>
+                                        </div>
+                                      </td>
+                                      <td data-id={recipe.recipe_id}>
+                                        <div>
+                                          <button
+                                            type="button"
+                                            onClick={() => this.deleteARecipe(recipe)}
+                                            className="btn-lg btn-danger btn-sm"
+                                          >
+                                            <i className="fa fa-trash-o" aria-hidden="true" />
+                                          </button>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
                             </Collapsible>
                           </div>
                         ))
@@ -181,5 +199,6 @@ const connectedDashboard = connect(mapStateToProps, {
   currentCategory,
   deleteCategory,
   viewRecipes,
+  deleteRecipe,
 })(Dashboard);
 export { connectedDashboard as Dashboard };

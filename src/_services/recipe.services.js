@@ -12,3 +12,6 @@ export function getRecipesAPICall(categoryId) {
   console.log('%&&%&%&%&%&%&%recipe get&%&&%&%&%&&%%&&%', categoryId);
   return axios.get(`${apiUrl}recipes/${categoryId}/`, { headers });
 }
+export function deleteRecipeAPICall(recipe) {
+  return axios.delete(`${apiUrl}recipes/${recipe.category}/${recipe.recipe_id}/`, { headers });
+}
