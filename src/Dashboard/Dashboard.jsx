@@ -74,7 +74,7 @@ class Dashboard extends React.Component {
                                 )}
                                 className="btn-lg btn-sm"
                               >
-                                view
+                                <i className="fa fa-eye" aria-hidden="true" />
                               </button>
                             </div>
                           </td>
@@ -85,18 +85,23 @@ class Dashboard extends React.Component {
                                 onClick={() => this.mapCategories(category)}
                                 className="btn-lg btn-primary btn-sm"
                               >
-                                Edit
+                                <i className="fa fa-pencil-square-o" aria-hidden="true" />
                               </button>
                             </div>
                           </td>
-                          <td data-id={category.recipes}>
+                          <td data-id={category.category_id}>
+                            <div>
+                              <RecipePage categoryId={category.category_id} />
+                            </div>
+                          </td>
+                          <td data-id={category.category_id}>
                             <div>
                               <button
                                 type="button"
                                 onClick={() => this.deleteACategory(category)}
                                 className="btn-lg btn-danger btn-sm"
                               >
-                                delete
+                                <i className="fa fa-trash-o" aria-hidden="true" />
                               </button>
                             </div>
                           </td>
@@ -116,9 +121,6 @@ class Dashboard extends React.Component {
               {!!categoriesOpen && <EditCategory />}
               <div>
                 recipes
-                <br />
-                <RecipePage />
-                <br />
                 <div className="container">
                   <div className="row">
                     <div className="col-sm">
@@ -132,22 +134,15 @@ class Dashboard extends React.Component {
                                   <tr>
                                     <td>
                                       <div>
-                                        <button type="button" className="btn-lg btn-sm">
-                                          view
-                                        </button>
-                                      </div>
-                                    </td>
-                                    <td>
-                                      <div>
                                         <button type="button" className="btn-lg btn-primary btn-sm">
-                                          Edit
+                                          <i className="fa fa-pencil-square-o" aria-hidden="true" />
                                         </button>
                                       </div>
                                     </td>
                                     <td data-id={recipe.recipe_id}>
                                       <div>
                                         <button type="button" className="btn-lg btn-danger btn-sm">
-                                          delete
+                                          <i className="fa fa-trash-o" aria-hidden="true" />
                                         </button>
                                       </div>
                                     </td>

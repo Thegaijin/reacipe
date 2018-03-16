@@ -6,7 +6,6 @@ import {
   deleteCategoryAPICall,
 } from '../_services/category.services';
 import * as alertActions from '../_actions/alert.actions';
-import { history } from '../_helpers/history';
 
 export function createCategory(category) {
   function request() {

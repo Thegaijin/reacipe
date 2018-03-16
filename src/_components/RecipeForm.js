@@ -1,9 +1,9 @@
+// @flow
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
-import { Link } from 'react-router-dom';
 
-import { required, email, username, password } from '../_helpers/validators';
+import { required, recipename } from '../_helpers/validators';
 
 const createRenderer = render => ({ input, meta, label }) => (
   <div
@@ -17,38 +17,28 @@ const createRenderer = render => ({ input, meta, label }) => (
 const RenderInput = createRenderer((input, type, label) => (
   <input {...input} placeholder={label} type={type} className="pa2 ba b--black-40 w-100" />
 ));
-const RegisterForm = (props) => {
+
+const RecipeForm = (props) => {
   const { handleSubmit, pristine, isSubmitting } = props;
 
   return (
     <div className="auth">
-      <form className="form-signin" onSubmit={handleSubmit}>
+      <form className="form-recipe" onSubmit={handleSubmit}>
         <Field
-          name="email"
-          id="email"
-          type="email"
-          component={RenderInput}
-          label="Email"
-          validate={[required, email]}
-          placeholder="Email"
-        />
-        <Field
-          name="username"
-          id="username"
+          name="recipe_name"
+          id="recipename"
           type="text"
           component={RenderInput}
-          label="Username"
-          validate={[required, username]}
-          placeholder="Username"
+          label="recipe name"
+          validate={[required, recipename]}
         />
         <Field
-          name="password"
-          id="password"
-          type="password"
+          name="description"
+          id="description"
+          type="text"
           component={RenderInput}
-          label="Password"
-          validate={[required, password]}
-          placeholder="Password"
+          label="description"
+          validate={[required]}
         />
         <button
           className="btn btn-lg btn-primary btn-block"
@@ -56,26 +46,19 @@ const RegisterForm = (props) => {
           type="submit"
         >
           {isSubmitting ? <i className="fa fa-spin fa-spinner" /> : null}
-          Register
+          Submit
         </button>
       </form>
-      <p className="auth_option">
-        Already have an account?
-        <Link to="/login" className="btn-lg">
-          Login
-        </Link>
-      </p>
     </div>
   );
 };
 
-RegisterForm.propTypes = {
+RecipeForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  pristine: PropTypes.func.isRequired,
+  // onSubmit: PropTypes.func.isRequired,
   // isSubmitting: PropTypes.func.isRequired
 };
 
 export default reduxForm({
-  form: 'registrationform',
-})(RegisterForm);
+  form: 'Recipeform',
+})(RecipeForm);

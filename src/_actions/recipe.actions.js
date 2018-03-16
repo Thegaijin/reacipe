@@ -1,7 +1,6 @@
 import { recipeConstants } from '../_constants/recipe.constants';
-import { createrecipeAPIcall, getRecipesAPICall } from '../_services/recipe.services';
+import { createRecipeAPIcall, getRecipesAPICall } from '../_services/recipe.services';
 import * as alertActions from '../_actions/alert.actions';
-import { history } from '../_helpers/history';
 
 // export const recipeActions = {
 //   create,
@@ -10,11 +9,11 @@ import { history } from '../_helpers/history';
 //   _delete
 // };
 
-export function createRecipe(category, recipe) {
+export function createRecipe(categoryId, recipe) {
   function request() {
     return { type: recipeConstants.CREATE_RECIPE_REQUEST, recipe };
   }
-  function success(recipe) {
+  function success() {
     return { type: recipeConstants.CREATE_RECIPE_SUCCESS, recipe };
   }
   function failure(error) {
@@ -22,8 +21,8 @@ export function createRecipe(category, recipe) {
   }
   return (dispatch) => {
     dispatch(request(recipe));
-    return createrecipeAPIcall(category, recipe).then(
-      (response) => {
+    return createRecipeAPIcall(categoryId, recipe).then(
+      () => {
         dispatch(success());
         window.location.reload();
         dispatch(alertActions.success('recipe created successfully'));
@@ -31,7 +30,7 @@ export function createRecipe(category, recipe) {
       (error) => {
         console.log('%%%%%%%%%%%%%%%%%%%%%%%%%', error.data);
         dispatch(failure(error));
-        dispatch(alertActions.error(error));
+        // dispatch(alertActions.error(error));
       },
     );
   };
