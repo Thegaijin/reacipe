@@ -16,3 +16,8 @@ export const categoryname = value =>
   (value && !/^[a-zA-Z\s]+$/i.test(value)
     ? `${value} does not meet standard email conventions`
     : undefined);
+
+export const recipename = value =>
+  (value && !/^[a-zA-Z\s]+$/i.test(value)
+    ? `${value} does not meet standard email conventions`
+    : undefined);

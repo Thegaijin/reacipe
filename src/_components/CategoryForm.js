@@ -22,7 +22,7 @@ const CategoryForm = (props) => {
 
   return (
     <div className="auth">
-      <form className="form-signin" onSubmit={handleSubmit}>
+      <form className="form-category" onSubmit={handleSubmit}>
         <Field
           name="category_name"
           id="categoryname"
