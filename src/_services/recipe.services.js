@@ -12,6 +12,13 @@ export function getRecipesAPICall(categoryId) {
   console.log('%&&%&%&%&%&%&%recipe get&%&&%&%&%&&%%&&%', categoryId);
   return axios.get(`${apiUrl}recipes/${categoryId}/`, { headers });
 }
+export function editRecipeAPICall(recipe) {
+  console.log('recipe recipe recipe recipe', recipe);
+  console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXX', recipe.category);
+  console.log('YYYYYYYYYYYYYYYYYYYYYYYYYYY', recipe.recipe_id);
+  console.log('YYYYYYYYYYYYYYYYYYYYYYYYYYY', recipe.ingredients);
+  return axios.put(`${apiUrl}recipes/${recipe.category}/${recipe.recipe_id}/`, recipe, { headers });
+}
 export function deleteRecipeAPICall(recipe) {
   return axios.delete(`${apiUrl}recipes/${recipe.category}/${recipe.recipe_id}/`, { headers });
 }

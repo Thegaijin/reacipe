@@ -5,8 +5,9 @@ import Collapsible from 'react-collapsible';
 import Layout from '../Layout/Layout';
 import { CategoryPage } from '../CategoryPage/CategoryPage';
 import { viewCategory, currentCategory, deleteCategory } from '../_actions/category.actions';
-import { viewRecipes, deleteRecipe } from '../_actions/recipe.actions';
+import { viewRecipes, deleteRecipe, currentRecipe } from '../_actions/recipe.actions';
 import { EditCategory } from '../CategoryPage/EditCategoryPage';
+import { EditRecipe } from '../_components/EditRecipePage';
 import { RecipePage } from '../RecipePage/RecipePage';
 
 class Dashboard extends React.Component {
@@ -17,17 +18,23 @@ class Dashboard extends React.Component {
     this.state = {
       categories: [],
       recipes: [],
-      categoriesOpen: false,
+      categoryOpen: false,
+      recipeOpen: false,
     };
   }
-  mapCategories = (category) => {
+  getCategory = (category) => {
     this.setState({
-      categoriesOpen: !this.state.categoriesOpen,
+      categoryOpen: !this.state.categoryOpen,
     });
     this.props.currentCategory(category);
   };
 
-  // `mapRecipes = (recipe) => {};
+  getRecipe = (recipe) => {
+    this.setState({
+      recipeOpen: !this.state.recipeOpen,
+    });
+    this.props.currentRecipe(recipe);
+  };
 
   deleteACategory = (category) => {
     this.props.deleteCategory(category);
@@ -43,8 +50,9 @@ class Dashboard extends React.Component {
 
   render() {
     const { categories, recipes } = this.props;
-    const { categoriesOpen } = this.state;
-    console.log('_-_-_-_-_-_-_-_-_-', this.state.categoriesOpen);
+    const { categoryOpen, recipeOpen } = this.state;
+    console.log('_-_-_-_-_-_-_-_-_-', this.state.categoryOpen);
+    console.log('*-*-*-*-*-*-*-*-*-', this.state.recipeOpen);
     return (
       <Layout>
         <div>
@@ -87,7 +95,7 @@ class Dashboard extends React.Component {
                               <div>
                                 <button
                                   type="button"
-                                  onClick={() => this.mapCategories(category)}
+                                  onClick={() => this.getCategory(category)}
                                   className="btn-lg btn-primary btn-sm"
                                 >
                                   <i className="fa fa-pencil-square-o" aria-hidden="true" />
@@ -124,7 +132,8 @@ class Dashboard extends React.Component {
           {/* Recipes */}
           <div className="col-sm-8">
             <div>
-              {!!categoriesOpen && <EditCategory />}
+              {!!categoryOpen && <EditCategory />}
+
               <div>
                 recipes
                 <div className="container">
@@ -143,6 +152,7 @@ class Dashboard extends React.Component {
                                         <div>
                                           <button
                                             type="button"
+                                            onClick={() => this.getRecipe(recipe)}
                                             className="btn-lg btn-primary btn-sm"
                                           >
                                             <i
@@ -175,6 +185,7 @@ class Dashboard extends React.Component {
                       )}
                     </div>
                   </div>
+                  <div>{!!recipeOpen && <EditRecipe />}</div>
                 </div>
               </div>
             </div>
@@ -198,6 +209,7 @@ const connectedDashboard = connect(mapStateToProps, {
   viewCategory,
   currentCategory,
   deleteCategory,
+  currentRecipe,
   viewRecipes,
   deleteRecipe,
 })(Dashboard);

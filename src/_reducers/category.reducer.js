@@ -53,7 +53,7 @@ export function editCategoryReducer(state = [], action) {
         ...state,
         ...action,
       };
-    case categoryConstants.EDIT_CATEGORY__FAILURE:
+    case categoryConstants.EDIT_CATEGORY_FAILURE:
       return {
         error: action.error,
       };

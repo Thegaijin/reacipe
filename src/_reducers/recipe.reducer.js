@@ -25,3 +25,30 @@ export function viewRecipeReducer(state = [], action) {
       return state;
   }
 }
+
+export function editRecipeReducer(state = [], action) {
+  switch (action.type) {
+    case recipeConstants.EDIT_RECIPE_REQUEST:
+      console.log('@@@@@@@@@@@@@@@@@@@@@#######################', action);
+      return {
+        loading: true,
+      };
+    case recipeConstants.EDIT_RECIPE_SUCCESS:
+      console.log('$$$$$$$$$$$$$$$$$$$$$$$', action);
+      return {
+        ...state,
+        ...action,
+      };
+    case recipeConstants.EDIT_RECIPE_FAILURE:
+      return {
+        error: action.error,
+      };
+    case recipeConstants.LOAD_RECIPE_CATEGORY:
+      return {
+        ...state,
+        currentRecipe: action.theRecipe,
+      };
+    default:
+      return state;
+  }
+}

@@ -10,7 +10,7 @@ import {
   editCategoryReducer,
   deleteCategoryReducer,
 } from '../_reducers/category.reducer';
-import { viewRecipeReducer } from '../_reducers/recipe.reducer';
+import { viewRecipeReducer, editRecipeReducer } from '../_reducers/recipe.reducer';
 
 const rootReducer = combineReducers({
   alert,
@@ -21,6 +21,7 @@ const rootReducer = combineReducers({
   editCategoryReducer,
   deleteCategoryReducer,
   viewRecipeReducer,
+  editRecipeReducer,
 });
 
 export default rootReducer;

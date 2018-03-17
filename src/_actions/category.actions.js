@@ -96,6 +96,7 @@ export function editCategory(category) {
     return editCategoryAPICall(category).then(
       (response) => {
         dispatch(success());
+        window.location.reload();
         console.log('^^^^%%%%%%%%edit%%&&&&&&&', response.data);
         dispatch(alertActions.success('Your categories'));
       },

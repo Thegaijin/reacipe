@@ -2,6 +2,7 @@ import { recipeConstants } from '../_constants/recipe.constants';
 import {
   createRecipeAPIcall,
   getRecipesAPICall,
+  editRecipeAPICall,
   deleteRecipeAPICall,
 } from '../_services/recipe.services';
 import * as alertActions from '../_actions/alert.actions';
@@ -75,6 +76,51 @@ export function viewRecipes(categoryId) {
       (error) => {
         console.log('%%%%%%%%%%%%%%%%%%%%%%%%%', error.data);
         // dispatch(failure(error));
+        // dispatch(alertActions.error(error));
+      },
+    );
+  };
+}
+
+export function currentRecipe(recipe) {
+  function addRecipeToStore(theRecipe) {
+    console.log('theRecipe theRecipe theRecipe', theRecipe);
+    return {
+      type: recipeConstants.LOAD_RECIPE_CATEGORY,
+      theRecipe,
+    };
+  }
+
+  return (dispatch) => {
+    dispatch(addRecipeToStore(recipe));
+  };
+}
+export function editRecipe(recipe) {
+  console.log('$%$%%$%$%$%$%$%$%$@@@@@@>>>>>>>>>>>>>>>>', recipe);
+  function request() {
+    return { type: recipeConstants.EDIT_RECIPE_REQUEST, recipe };
+  }
+  function success() {
+    return {
+      type: recipeConstants.EDIT_RECIPE_SUCCESS,
+      recipe,
+    };
+  }
+  function failure() {
+    return { type: recipeConstants.EDIT_RECIPE_FAILURE, recipe };
+  }
+  return (dispatch) => {
+    dispatch(request(recipe));
+    return editRecipeAPICall(recipe).then(
+      (response) => {
+        dispatch(success());
+        window.location.reload();
+        console.log('^^^^%%%%%%%%edit%%&&&&&&&', response.data);
+        dispatch(alertActions.success('Your recipes'));
+      },
+      (error) => {
+        console.log('%%%%%%%%%%%%edit%%%%%%%%%%%%%', error.data);
+        dispatch(failure(error));
         // dispatch(alertActions.error(error));
       },
     );
