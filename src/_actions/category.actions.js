@@ -22,7 +22,6 @@ export function createCategory(category) {
     return createCategoryAPICall(category).then(
       () => {
         dispatch(success());
-        // history.push('/Dashboard');
         window.location.reload();
         dispatch(alertActions.success('Category created successfully'));
       },
@@ -35,25 +34,24 @@ export function createCategory(category) {
   };
 }
 
-export function viewCategory() {
+export function viewCategory(pageNum = null) {
   function request() {
     return { type: categoryConstants.VIEW_ALL_CATEGORIES_REQUEST };
   }
-  function success(categories) {
+  function success(response) {
     return {
       type: categoryConstants.VIEW_ALL_CATEGORIES_SUCCESS,
-      categories,
+      payload: response,
     };
   }
-  function failure() {
-    return { type: categoryConstants.VIEW_ALL_CATEGORIES_FAILURE };
+  function failure(error) {
+    return { type: categoryConstants.VIEW_ALL_CATEGORIES_FAILURE, error };
   }
   return (dispatch) => {
     dispatch(request());
-    return getCategoriesAPICall().then(
+    return getCategoriesAPICall(pageNum).then(
       (response) => {
-        dispatch(success(response.data[0]));
-        console.log(response.data[0]);
+        dispatch(success(response.data));
         console.log('^^^^%%%%%%%%view%%&&&&&&&', response.data);
         dispatch(alertActions.success('Your categories'));
       },

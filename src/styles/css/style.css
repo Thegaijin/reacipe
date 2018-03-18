@@ -5,6 +5,7 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  font-size: 1.3rem;
 }
 
 a {
@@ -37,7 +38,6 @@ input {
 }
 
 .menu {
-  float: right;
   margin-top: 8px;
 }
 
@@ -50,7 +50,7 @@ input {
 }
 
 .menu li a {
-  color: white;
+  color: black;
   font-weight: bold;
   text-decoration: none;
 }
@@ -84,7 +84,7 @@ input {
 }
 
 .block {
-  width: 200px;
+  width: 220px;
   height: 2rem;
   margin: 0.5rem;
   display: inline-block;
@@ -98,7 +98,7 @@ input {
 }
 
 .Collapsible {
-  border-radius: 8px;
+  border-radius: 0px;
   border-color: black;
   text-align: center;
   font-family: "Playfair Display";
@@ -124,4 +124,21 @@ input {
   width: 50%;
   margin: 0px auto;
   float: none;
+}
+
+.nav-block {
+  width: 250px;
+  height: 2rem;
+  margin: 0.5rem;
+  display: inline-block;
+  border-radius: 8px;
+}
+
+.navbar-inverse {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-color: #080808;
+}
+
+.container-fluid {
+  padding-bottom: 8px;
 }

@@ -7,11 +7,8 @@ export function viewRecipeReducer(state = [], action) {
         loading: true,
       };
     case recipeConstants.VIEW_ALL_RECIPES_SUCCESS:
-      console.log('$$$$$$$$$$$recipe$$$$$$$$$$$$', action);
-      return {
-        ...state,
-        ...action,
-      };
+      console.log('$$$$$$$$$$$recipe$$$$$$$$$$$$------>>>>>', action);
+      return action.payload;
     case recipeConstants.VIEW_ALL_RECIPES_FAILURE:
       return {
         error: action.error,

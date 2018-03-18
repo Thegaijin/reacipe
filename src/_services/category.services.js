@@ -9,8 +9,12 @@ export function createCategoryAPICall(category) {
 }
 
 // Get all categories
-export function getCategoriesAPICall() {
-  return axios.get(`${apiUrl}/categories/`, { headers });
+export function getCategoriesAPICall(pageNum = null) {
+  if (typeof pageNum === 'number' && pageNum > 0) {
+    return axios.get(`${apiUrl}/categories/?page=${pageNum}`, { headers });
+  } else {
+    return axios.get(`${apiUrl}/categories/`, { headers });
+  }
 }
 
 // For search

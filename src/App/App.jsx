@@ -27,7 +27,7 @@ class App extends React.Component {
     return (
       <div>
         <div className="container">
-          <div className="col-sm-offset-2">
+          <div className="">
             {alert.message && <div className={`alert ${alert.type}`}>{alert.message}</div>}
             <Router history={history}>
               <div>

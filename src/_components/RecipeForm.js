@@ -15,31 +15,42 @@ const createRenderer = render => ({ input, meta, label }) => (
 );
 
 const RenderInput = createRenderer((input, type, label) => (
-  <input {...input} placeholder={label} type={type} className="pa2 ba b--black-40 w-100" />
+  <input {...input} type={type} placeholder={label} className="pa2 ba b--black-40 w-100" />
 ));
 
 const RecipeForm = (props) => {
-  const { handleSubmit, pristine, isSubmitting } = props;
+  const { handleSubmit, pristine, label, isSubmitting } = props;
 
   return (
     <div className="auth">
       <form className="form-recipe" onSubmit={handleSubmit}>
-        <Field
-          name="recipe_name"
-          id="recipename"
-          type="text"
-          component={RenderInput}
-          label="recipe name"
-          validate={[required, recipename]}
-        />
-        <Field
-          name="description"
-          id="description"
-          type="text"
-          component={RenderInput}
-          label="description"
-          validate={[required]}
-        />
+        <div>
+          <label>Recipe Name</label>
+          <div>
+            <Field
+              name="recipe_name"
+              id="recipename"
+              type="text"
+              component={RenderInput}
+              label="recipe name"
+              validate={[required, recipename]}
+              placeholder="First Name"
+            />
+          </div>
+        </div>
+        <div>
+          <label>Ingredients</label>
+          <div>
+            <Field
+              name="ingredients"
+              id="ingredients"
+              type="text"
+              component={RenderInput}
+              label="ingredients"
+              validate={[required]}
+            />
+          </div>
+        </div>
         <button
           className="btn btn-lg btn-primary btn-block"
           disabled={pristine || isSubmitting}

@@ -26,11 +26,8 @@ export function viewCategoryReducer(state = [], action) {
         loading: true,
       };
     case categoryConstants.VIEW_ALL_CATEGORIES_SUCCESS:
-      console.log('$$$$$$$$$$$$$$$$$$$$$$$', action);
-      return {
-        ...state,
-        ...action,
-      };
+      console.log('$$$$$$$$$$$$$$$$categories$$$$$$$$@@@@@@@@@@========>>>>>>>>', action);
+      return action.payload;
     case categoryConstants.VIEW_ALL_CATEGORIES_FAILURE:
       return {
         error: action.error,

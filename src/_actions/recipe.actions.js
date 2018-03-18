@@ -53,12 +53,15 @@ export function getRecipes(categoryId) {
   };
 }
 
-export function viewRecipes(categoryId) {
+export function viewRecipes(categoryId, pageNum = null) {
   function request() {
     return { type: recipeConstants.VIEW_ALL_RECIPES_REQUEST };
   }
-  function success(recipes) {
-    return { type: recipeConstants.VIEW_ALL_RECIPES_SUCCESS, recipes };
+  function success(response) {
+    return {
+      type: recipeConstants.VIEW_ALL_RECIPES_SUCCESS,
+      payload: response,
+    };
   }
   function failure(error) {
     return { type: recipeConstants.VIEW__ALL_RECIPES_FAILURE, error };
@@ -66,11 +69,11 @@ export function viewRecipes(categoryId) {
   return (dispatch) => {
     dispatch(request());
     console.log('&^&^&^&^&^recipes&^&^&^&*&', categoryId);
-    return getRecipesAPICall(categoryId).then(
+    return getRecipesAPICall(categoryId, pageNum).then(
       (response) => {
-        console.log('&^&^&^&^&^recipes&^&^&^&*&', response.data[0]);
-        dispatch(success(response.data[0]));
-        console.log('&^&^&^&^&^After success&^&^&^&*&', response.data[0]);
+        console.log('&^&^&^&^&^recipes&^&^&^&*&', response.data.recipes);
+        dispatch(success(response.data));
+        console.log('&^&^&^&^&^After success&^&^&^&*&', response.data);
         dispatch(alertActions.success('recipe returned successfully'));
       },
       (error) => {
