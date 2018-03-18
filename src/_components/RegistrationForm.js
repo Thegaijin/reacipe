@@ -23,33 +23,42 @@ const RegisterForm = (props) => {
   return (
     <div className="auth">
       <form className="form-signin" onSubmit={handleSubmit}>
-        <Field
-          name="email"
-          id="email"
-          type="email"
-          component={RenderInput}
-          label="Email"
-          validate={[required, email]}
-          placeholder="Email"
-        />
-        <Field
-          name="username"
-          id="username"
-          type="text"
-          component={RenderInput}
-          label="Username"
-          validate={[required, username]}
-          placeholder="Username"
-        />
-        <Field
-          name="password"
-          id="password"
-          type="password"
-          component={RenderInput}
-          label="Password"
-          validate={[required, password]}
-          placeholder="Password"
-        />
+        <div>
+          <label>Email</label>
+          <Field
+            name="email"
+            id="email"
+            type="email"
+            component={RenderInput}
+            label="Email"
+            validate={[required, email]}
+            placeholder="Email"
+          />
+        </div>
+        <div>
+          <label>Username</label>
+          <Field
+            name="username"
+            id="username"
+            type="text"
+            component={RenderInput}
+            label="Username"
+            validate={[required, username]}
+            placeholder="Username"
+          />
+        </div>
+        <div>
+          <label>Password</label>
+          <Field
+            name="password"
+            id="password"
+            type="password"
+            component={RenderInput}
+            label="Password"
+            validate={[required, password]}
+            placeholder="Password"
+          />
+        </div>
         <button
           className="btn btn-lg btn-primary btn-block"
           disabled={pristine || isSubmitting}

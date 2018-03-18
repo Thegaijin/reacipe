@@ -15,7 +15,7 @@ class RecipePage extends React.Component {
     this.state = {
       isActive: false,
       recipename: '',
-      description: '',
+      ingredients: '',
       submitted: false,
     };
   }
@@ -34,13 +34,13 @@ class RecipePage extends React.Component {
       '/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*',
       values.recipename,
       values.ingredrients,
-      this.props.category_id,
+      this.props.categoryId,
     );
     this.props.createRecipe(this.props.categoryId, values).then(() => {});
   }
   render() {
     return (
-      <div className="col-md-offset-3">
+      <div>
         <button className="btn btn-primary btn-sm" onClick={this.toggleModal}>
           <i className="fa fa-plus-square-o" aria-hidden="true" />
           recipe

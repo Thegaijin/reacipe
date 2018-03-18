@@ -24,22 +24,28 @@ const LoginForm = (props) => {
   return (
     <div className="auth">
       <form className="form-signin" onSubmit={handleSubmit}>
-        <Field
-          name="username"
-          id="username"
-          type="text"
-          component={RenderInput}
-          label="Username"
-          validate={[required, username]}
-        />
-        <Field
-          name="password"
-          id="password"
-          type="password"
-          component={RenderInput}
-          label="Password"
-          validate={[required, password]}
-        />
+        <div>
+          <label>Username</label>
+          <Field
+            name="username"
+            id="username"
+            type="text"
+            component={RenderInput}
+            label="Username"
+            validate={[required, username]}
+          />
+        </div>
+        <div>
+          <label>Password</label>
+          <Field
+            name="password"
+            id="password"
+            type="password"
+            component={RenderInput}
+            label="Password"
+            validate={[required, password]}
+          />
+        </div>
         <button
           className="btn btn-lg btn-primary btn-block"
           disabled={pristine || isSubmitting}

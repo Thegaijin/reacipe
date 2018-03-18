@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const HomePage = () => {
   return (
@@ -15,8 +15,8 @@ const HomePage = () => {
             </div>
             <div className="col-lg-8 mx-auto">
               <p className="text-faded mb-5">
-                Create and share your savory ideas with us. Lets whet our
-                palettes together. Happy creating
+                Create and share your savory ideas with us. Lets whet our palettes together. Happy
+                creating
               </p>
 
               <Link to="/login" className="btn-lg">

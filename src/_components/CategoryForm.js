@@ -23,22 +23,28 @@ const CategoryForm = (props) => {
   return (
     <div className="auth">
       <form className="form-category" onSubmit={handleSubmit}>
-        <Field
-          name="category_name"
-          id="categoryname"
-          type="text"
-          component={RenderInput}
-          label="category name"
-          validate={[required, categoryname]}
-        />
-        <Field
-          name="description"
-          id="description"
-          type="text"
-          component={RenderInput}
-          label="description"
-          validate={[required]}
-        />
+        <div>
+          <label>Category Name</label>
+          <Field
+            name="category_name"
+            id="categoryname"
+            type="text"
+            component={RenderInput}
+            label="category name"
+            validate={[required, categoryname]}
+          />
+        </div>
+        <div>
+          <label>Category Description</label>
+          <Field
+            name="description"
+            id="description"
+            type="text"
+            component={RenderInput}
+            label="description"
+            validate={[required]}
+          />
+        </div>
         <button
           className="btn btn-lg btn-primary btn-block"
           disabled={pristine || isSubmitting}

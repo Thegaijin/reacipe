@@ -13,11 +13,7 @@ export const password = value =>
     ? 'Password can only comprise of alphanumeric values & an underscore and not more than 25 characters'
     : undefined);
 export const categoryname = value =>
-  (value && !/^[a-zA-Z\s]+$/i.test(value)
-    ? `${value} does not meet standard email conventions`
-    : undefined);
+  (value && !/^[a-zA-Z\s]+$/i.test(value) ? `${value} is not a valid category name` : undefined);
 
 export const recipename = value =>
-  (value && !/^[a-zA-Z\s]+$/i.test(value)
-    ? `${value} does not meet standard email conventions`
-    : undefined);
+  (value && !/^[a-zA-Z\s]+$/i.test(value) ? `${value} is not a valid recipe name` : undefined);

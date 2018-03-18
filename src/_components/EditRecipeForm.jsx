@@ -39,22 +39,28 @@ class EditRecipeForm extends React.Component {
     return (
       <div className="auth">
         <form className="form-signin" onSubmit={handleSubmit}>
-          <Field
-            name="recipe_name"
-            id="recipe_id"
-            type="text"
-            component={RenderInput}
-            label="recipe name"
-            validate={[required, recipename]}
-          />
-          <Field
-            name="ingredients"
-            id="ingredients"
-            type="text"
-            component={RenderInput}
-            label="ingredients"
-            validate={[required]}
-          />
+          <div>
+            <label>Recipe Name</label>
+            <Field
+              name="recipe_name"
+              id="recipe_id"
+              type="text"
+              component={RenderInput}
+              label="recipe name"
+              validate={[required, recipename]}
+            />
+          </div>
+          <div>
+            <label>Recipe Description</label>
+            <Field
+              name="ingredients"
+              id="ingredients"
+              type="text"
+              component={RenderInput}
+              label="ingredients"
+              validate={[required]}
+            />
+          </div>
           {/* <Field name="category" id="category" type="hidden" component={RenderInput} /> */}
           <button
             className="btn btn-lg btn-primary btn-block"
