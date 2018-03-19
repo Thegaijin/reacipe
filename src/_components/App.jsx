@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import { history } from '../_helpers/history';
 import * as alertActions from '../_actions/alert.actions';
 // import { PrivateRoute } from '../_components/PrivateRoute';
-import { Dashboard } from '../Dashboard/Dashboard';
-import HomePage from '../HomePage/HomePage';
-import { LoginPage } from '../LoginPage/LoginPage';
-import { RegisterPage } from '../RegisterPage/RegisterPage';
+import { Dashboard } from './Dashboard';
+import HomePage from './HomePage';
+import { LoginPage } from './LoginPage';
+import { RegisterPage } from './RegisterPage';
 
 class App extends React.Component {
   constructor(props) {

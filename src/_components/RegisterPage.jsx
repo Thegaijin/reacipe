@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { register } from '../_actions/user.actions';
-import RegisterForm from '../_components/RegistrationForm';
+import RegisterForm from '../_components/forms/RegistrationForm';
 
 class RegisterPage extends React.Component {
   constructor(props) {

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { editCategory } from '../_actions/category.actions';
-import EditCategoryForm from '../_components/EditCategoryForm';
+import EditCategoryForm from '../_components/forms/EditCategoryForm';
 
 class EditCategory extends React.Component {
   constructor(props) {

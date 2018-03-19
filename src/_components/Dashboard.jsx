@@ -5,13 +5,13 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { Pagination } from 'react-bootstrap';
 
-import Layout from '../Layout/Layout';
-import { CategoryPage } from '../CategoryPage/CategoryPage';
+import Layout from '../_components/Layout';
+import { CategoryPage } from '../_components/CategoryPage';
 import { viewCategory, currentCategory, deleteCategory } from '../_actions/category.actions';
 import { viewRecipes, deleteRecipe, currentRecipe } from '../_actions/recipe.actions';
-import { EditCategory } from '../CategoryPage/EditCategoryPage';
+import { EditCategory } from '../_components/EditCategoryPage';
 import { EditRecipe } from '../_components/EditRecipePage';
-import { RecipePage } from '../RecipePage/RecipePage';
+import { RecipePage } from '../_components/RecipePage';
 import { SearchCategoryPage } from '../_components/SearchCategoryPage';
 import { SearchRecipePage } from '../_components/SearchRecipePage';
 

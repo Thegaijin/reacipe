@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 
-import { required, recipename } from '../_helpers/validators';
+import { required, recipename } from '../../_helpers/validators';
 
 const createRenderer = render => ({ input, meta, label }) => (
   <div

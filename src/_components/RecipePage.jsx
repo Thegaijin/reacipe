@@ -2,22 +2,20 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
 
-import { createCategory } from '../_actions/category.actions';
-import CategoryForm from '../_components/CategoryForm';
+import { createRecipe } from '../_actions/recipe.actions';
+import RecipeForm from '../_components/forms/RecipeForm';
 
-class CategoryPage extends React.Component {
+class RecipePage extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       isActive: false,
-      category: {
-        category_name: '',
-        description: '',
-        submitted: false,
-      },
+      recipename: '',
+      ingredients: '',
+      submitted: false,
     };
   }
-
   componentWillMount = () => {
     Modal.setAppElement('body');
   };
@@ -27,15 +25,22 @@ class CategoryPage extends React.Component {
   };
 
   handleSubmit(values) {
+    console.log('This is the id*************', this.props.categoryId);
     console.log('>>>>>>>>>>', values);
-    console.log('/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*', values.category_name, values.description);
-    this.props.createCategory(values);
+    console.log(
+      '/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*',
+      values.recipename,
+      values.ingredrients,
+      this.props.categoryId,
+    );
+    this.props.createRecipe(this.props.categoryId, values).then(() => {});
   }
   render() {
     return (
-      <div className="col-md-offset-3">
-        <button className="btn btn-primary" onClick={this.toggleModal}>
-          Add Category
+      <div>
+        <button className="btn btn-primary btn-sm" onClick={this.toggleModal}>
+          <i className="fa fa-plus-square-o" aria-hidden="true" />
+          recipe
         </button>
         <Modal
           isOpen={this.state.isActive}
@@ -72,8 +77,8 @@ class CategoryPage extends React.Component {
           }}
           shouldCloseOnEsc
         >
-          Add Category
-          <CategoryForm onSubmit={this.handleSubmit.bind(this)} />
+          Add recipe
+          <RecipeForm onSubmit={this.handleSubmit.bind(this)} />
           <button className="btn btn-danger" onClick={this.toggleModal}>
             Close
           </button>
@@ -83,5 +88,5 @@ class CategoryPage extends React.Component {
   }
 }
 
-const connectedCategoryPage = connect(null, { createCategory })(CategoryPage);
-export { connectedCategoryPage as CategoryPage };
+const connectedRecipePage = connect(null, { createRecipe })(RecipePage);
+export { connectedRecipePage as RecipePage };

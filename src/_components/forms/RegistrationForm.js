@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 
-import { required, email, username, password } from '../_helpers/validators';
+import { required, email, username, password } from '../../_helpers/validators';
 
 const createRenderer = render => ({ input, meta, label }) => (
   <div

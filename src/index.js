@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import 'tachyons';
 
 import { store } from './_helpers/store';
-import { App } from './App/App';
+import { App } from './_components/App';
 import styles from './styles/css/style.css';
 
 render(

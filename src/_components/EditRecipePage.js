@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { editRecipe } from '../_actions/recipe.actions';
-import EditRecipeForm from '../_components/EditRecipeForm';
+import EditRecipeForm from '../_components/forms/EditRecipeForm';
 
 class EditRecipe extends React.Component {
   constructor(props) {

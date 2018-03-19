@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import SearchRecipeForm from '../_components/SearchRecipeForm';
+import SearchRecipeForm from '../_components/forms/SearchRecipeForm';
 import { viewRecipes } from '../_actions/recipe.actions';
 
 class SearchRecipePage extends React.Component {

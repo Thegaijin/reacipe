@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import SearchCategoryForm from '../_components/SearchCategoryForm';
+import SearchCategoryForm from '../_components/forms/SearchCategoryForm';
 import { viewCategory } from '../_actions/category.actions';
 
 class SearchCategoryPage extends React.Component {

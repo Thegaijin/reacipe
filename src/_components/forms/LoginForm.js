@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
+import { Link } from 'react-router-dom';
 
-import { required, categoryname } from '../_helpers/validators';
+import { required, username, password } from '../../_helpers/validators';
 
 const createRenderer = render => ({ input, meta, label }) => (
   <div
@@ -17,53 +18,59 @@ const RenderInput = createRenderer((input, type, label) => (
   <input {...input} placeholder={label} type={type} className="pa2 ba b--black-40 w-100" />
 ));
 
-const CategoryForm = (props) => {
+const LoginForm = (props) => {
   const { handleSubmit, pristine, isSubmitting } = props;
 
   return (
     <div className="auth">
-      <form className="form-category" onSubmit={handleSubmit}>
+      <form className="form-signin" onSubmit={handleSubmit}>
         <div>
-          <label>Category Name</label>
+          <label>Username</label>
           <Field
-            name="category_name"
-            id="categoryname"
+            name="username"
+            id="username"
             type="text"
             component={RenderInput}
-            label="category name"
-            validate={[required, categoryname]}
+            label="Username"
+            validate={[required, username]}
           />
         </div>
         <div>
-          <label>Category Description</label>
+          <label>Password</label>
           <Field
-            name="description"
-            id="description"
-            type="text"
+            name="password"
+            id="password"
+            type="password"
             component={RenderInput}
-            label="description"
-            validate={[required]}
+            label="Password"
+            validate={[required, password]}
           />
         </div>
         <button
-          className="btn btn-lg btn-primary btn-sm"
+          className="btn btn-sm btn-primary"
           disabled={pristine || isSubmitting}
           type="submit"
         >
           {isSubmitting ? <i className="fa fa-spin fa-spinner" /> : null}
-          Submit
+          Login
         </button>
       </form>
+      <p className="auth_option">
+        Don't have an account?
+        <Link to="/register" className="btn-lg">
+          Register
+        </Link>
+      </p>
     </div>
   );
 };
 
-CategoryForm.propTypes = {
+LoginForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   // onSubmit: PropTypes.func.isRequired,
   // isSubmitting: PropTypes.func.isRequired
 };
 
 export default reduxForm({
-  form: 'categoryform',
-})(CategoryForm);
+  form: 'loginform',
+})(LoginForm);
