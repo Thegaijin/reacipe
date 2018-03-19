@@ -15,8 +15,15 @@ export function authentication(state = initialState, action) {
       };
     case userConstants.LOGIN_FAILURE:
       return {};
-    case userConstants.LOGOUT:
-      return {};
+    case userConstants.LOGOUT_REQUEST:
+      return {
+        loggedIn: true,
+      };
+    case userConstants.LOGOUT_SUCCESS:
+      console.log('We are here%%%%%%%%%%@@@@@@@@@@');
+      return {
+        loggedIn: false,
+      };
     default:
       return state;
   }

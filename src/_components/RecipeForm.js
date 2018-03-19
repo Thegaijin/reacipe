@@ -52,7 +52,7 @@ const RecipeForm = (props) => {
           </div>
         </div>
         <button
-          className="btn btn-lg btn-primary btn-block"
+          className="btn btn-sm btn-primary"
           disabled={pristine || isSubmitting}
           type="submit"
         >

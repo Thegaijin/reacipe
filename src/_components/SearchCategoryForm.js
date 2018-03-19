@@ -1,8 +1,7 @@
+// @flow
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
-
-import { required, categoryname } from '../_helpers/validators';
 
 const createRenderer = render => ({ input, meta, label }) => (
   <div
@@ -14,39 +13,27 @@ const createRenderer = render => ({ input, meta, label }) => (
 );
 
 const RenderInput = createRenderer((input, type, label) => (
-  <input {...input} placeholder={label} type={type} className="pa2 ba b--black-40 w-100" />
+  <input {...input} type={type} placeholder={label} className="pa2 ba b--black-40 w-60" />
 ));
 
-const CategoryForm = (props) => {
+const SearchCategoryForm = (props) => {
   const { handleSubmit, pristine, isSubmitting } = props;
 
   return (
     <div className="auth">
-      <form className="form-category" onSubmit={handleSubmit}>
+      <form className="form-search" onSubmit={handleSubmit}>
         <div>
-          <label>Category Name</label>
           <Field
             name="category_name"
             id="categoryname"
             type="text"
             component={RenderInput}
             label="category name"
-            validate={[required, categoryname]}
-          />
-        </div>
-        <div>
-          <label>Category Description</label>
-          <Field
-            name="description"
-            id="description"
-            type="text"
-            component={RenderInput}
-            label="description"
-            validate={[required]}
+            placeholder="Category Name"
           />
         </div>
         <button
-          className="btn btn-lg btn-primary btn-sm"
+          className="btn btn-sm btn-primary"
           disabled={pristine || isSubmitting}
           type="submit"
         >
@@ -58,12 +45,12 @@ const CategoryForm = (props) => {
   );
 };
 
-CategoryForm.propTypes = {
+SearchCategoryForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   // onSubmit: PropTypes.func.isRequired,
   // isSubmitting: PropTypes.func.isRequired
 };
 
 export default reduxForm({
-  form: 'categoryform',
-})(CategoryForm);
+  form: 'SearchCategoryForm',
+})(SearchCategoryForm);

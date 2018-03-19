@@ -1,6 +1,10 @@
 // @flow
 import { userConstants } from '../_constants/user.constants';
-import { registeruserAPIcall, loginuserAPIcall } from '../_services/user.services';
+import {
+  registeruserAPIcall,
+  loginuserAPIcall,
+  logoutuserAPIcall,
+} from '../_services/user.services';
 import * as alertActions from '../_actions/alert.actions';
 import { history } from '../_helpers/history';
 
@@ -52,6 +56,35 @@ export function login(user) {
         console.log('???????????????????????????', localStorage.getItem('token'));
         history.push('/dashboard');
         dispatch(alertActions.success('Logged in successfully'));
+      },
+      (error) => {
+        console.log('%%%%%%%%%%%%%%%%%%%%%%%%%', error.data);
+        dispatch(failure(error));
+        // dispatch(alertActions.error(error));
+      },
+    );
+  };
+}
+
+export function logout() {
+  function request() {
+    return { type: userConstants.LOGOUT_REQUEST };
+  }
+  function success(response) {
+    return { type: userConstants.LOGOUT_SUCCESS };
+  }
+  function failure() {
+    return { type: userConstants.LOGOUT_FAILURE };
+  }
+
+  return (dispatch) => {
+    dispatch(request());
+    return logoutuserAPIcall().then(
+      (response) => {
+        dispatch(success(response.data));
+        localStorage.clear();
+        history.push('/login');
+        dispatch(alertActions.success(response.data.message));
       },
       (error) => {
         console.log('%%%%%%%%%%%%%%%%%%%%%%%%%', error.data);

@@ -12,6 +12,8 @@ import { viewRecipes, deleteRecipe, currentRecipe } from '../_actions/recipe.act
 import { EditCategory } from '../CategoryPage/EditCategoryPage';
 import { EditRecipe } from '../_components/EditRecipePage';
 import { RecipePage } from '../RecipePage/RecipePage';
+import { SearchCategoryPage } from '../_components/SearchCategoryPage';
+import { SearchRecipePage } from '../_components/SearchRecipePage';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -204,6 +206,7 @@ class Dashboard extends React.Component {
 
   render() {
     const { categories, recipes, categoryPages, recipePages } = this.props;
+    console.log('***************************============>', categories);
     const { categoryOpen, recipeOpen } = this.state;
     console.log('_-_-_-_-_-_-_-_-_-', this.state.categoryOpen);
     console.log('*-*-*-*-*-*-*-*-*-', this.state.recipeOpen);
@@ -218,14 +221,18 @@ class Dashboard extends React.Component {
           {/* Categories */}
           <div className="col-sm-4">
             Categories
-            <br />
             <CategoryPage />
+            <br />
+            Search Categories
+            <SearchCategoryPage />
             <br />
             {categories && categories.length > 0 ? (
               categories.map(category => (
                 <div className="block" key={category.category_id}>
                   <Collapsible trigger={category.category_name}>
-                    <p>{category.description}</p>
+                    <div className="details">
+                      <p>{category.description}</p>
+                    </div>
                     <div className="container-fluid">
                       <table className="text-centered">
                         <tbody>
@@ -295,6 +302,12 @@ class Dashboard extends React.Component {
 
               <div>
                 recipes
+                <br />
+                <div className="recipe-search">
+                  Search Recipes
+                  <SearchRecipePage />
+                </div>
+                <br />
                 <div className="container">
                   <div className="row">
                     <div className="col-sm">

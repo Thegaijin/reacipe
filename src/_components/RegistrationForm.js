@@ -60,7 +60,7 @@ const RegisterForm = (props) => {
           />
         </div>
         <button
-          className="btn btn-lg btn-primary btn-block"
+          className="btn btn-sm btn-primary"
           disabled={pristine || isSubmitting}
           type="submit"
         >
@@ -70,7 +70,7 @@ const RegisterForm = (props) => {
       </form>
       <p className="auth_option">
         Already have an account?
-        <Link to="/login" className="btn-lg">
+        <Link to="/login" className="btn-sm">
           Login
         </Link>
       </p>
@@ -80,9 +80,7 @@ const RegisterForm = (props) => {
 
 RegisterForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
   pristine: PropTypes.func.isRequired,
-  // isSubmitting: PropTypes.func.isRequired
 };
 
 export default reduxForm({

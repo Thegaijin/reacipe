@@ -63,7 +63,7 @@ class EditRecipeForm extends React.Component {
           </div>
           {/* <Field name="category" id="category" type="hidden" component={RenderInput} /> */}
           <button
-            className="btn btn-lg btn-primary btn-block"
+            className="btn btn-lg btn-primary btn-sm"
             disabled={pristine || isSubmitting}
             type="submit"
           >

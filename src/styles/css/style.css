@@ -10,6 +10,12 @@ body {
 
 a {
   cursor: pointer;
+  /* color: #337ab7; */
+  text-decoration: none;
+  color: black;
+  background-color: transparent;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .help-block {
@@ -22,19 +28,20 @@ input {
 }
 
 .whiteback {
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(255, 255, 255, 0.6);
   padding: 1rem 1rem;
   width: 50%;
   margin: 20% auto;
+  border-radius: 0.3em;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
-.auth_options {
+.auth_option {
   text-align: center;
 }
 
 .auth p {
-  color: white;
+  color: black;
 }
 
 .menu {
@@ -142,3 +149,15 @@ input {
 .container-fluid {
   padding-bottom: 8px;
 }
+
+.recipe-search {
+  text-align: right;
+}
+
+/* .details {
+  background-color: lightgrey;
+  width: 20rem;
+  border: 0.5rem solid green;
+  padding-top: 1rem;
+  margin-left: 1rem;
+} */

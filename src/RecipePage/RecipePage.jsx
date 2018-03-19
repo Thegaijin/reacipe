@@ -9,9 +9,6 @@ class RecipePage extends React.Component {
   constructor(props) {
     super(props);
 
-    // reset login status
-    // this.props.dispatch(userActions.logout());,
-
     this.state = {
       isActive: false,
       recipename: '',
