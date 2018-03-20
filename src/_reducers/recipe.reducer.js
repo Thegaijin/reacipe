@@ -1,6 +1,6 @@
 import { recipeConstants } from '../_constants/recipe.constants';
 
-export function viewRecipeReducer(state = [], action) {
+export function recipeReducer(state = [], action) {
   switch (action.type) {
     case recipeConstants.VIEW_ALL_RECIPES_REQUEST:
       return {
@@ -18,13 +18,6 @@ export function viewRecipeReducer(state = [], action) {
         ...state,
         ...action,
       };
-    default:
-      return state;
-  }
-}
-
-export function editRecipeReducer(state = [], action) {
-  switch (action.type) {
     case recipeConstants.EDIT_RECIPE_REQUEST:
       console.log('@@@@@@@@@@@@@@@@@@@@@#######################', action);
       return {

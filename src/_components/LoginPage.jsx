@@ -30,10 +30,9 @@ class LoginPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const { loggingIn, loggedIn } = state.authentication;
+  const { loggingIn } = state.authentication;
   return {
     loggingIn,
-    loggedIn,
   };
 }
 
