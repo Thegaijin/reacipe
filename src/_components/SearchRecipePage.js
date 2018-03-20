@@ -15,10 +15,11 @@ class SearchRecipePage extends React.Component {
 
   handleSubmit(values) {
     console.log('<<<<<<<<<The categoryId>>>>>>>>>', this.state);
-    console.log('This is the id*************', values);
-    console.log('This is the id*************', values.recipe_name);
+    console.log('Search recipes, This is the id*************', this.props.categoryId);
+    console.log('These are the values*************', values);
+    console.log('This is the value*************', values.recipe_name);
     const search = values.recipe_name;
-    this.props.viewRecipes(search);
+    this.props.viewRecipes(this.props.categoryId, search);
   }
 
   render() {

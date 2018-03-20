@@ -24,8 +24,8 @@ const SearchRecipeForm = (props) => {
       <form className="form-search" onSubmit={handleSubmit}>
         <div>
           <Field
-            name="category_name"
-            id="categoryname"
+            name="recipe_name"
+            id="recipename"
             type="text"
             component={RenderInput}
             label="recipe name"

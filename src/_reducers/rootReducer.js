@@ -5,23 +5,16 @@ import { reducer as formReducer } from 'redux-form';
 import { alert } from '../_reducers/alert.reducer';
 import { authentication } from '../_reducers/authentication.reducer';
 import { registration } from '../_reducers/registration.reducer';
-import {
-  viewCategoryReducer,
-  editCategoryReducer,
-  deleteCategoryReducer,
-} from '../_reducers/category.reducer';
-import { viewRecipeReducer, editRecipeReducer } from '../_reducers/recipe.reducer';
+import { categoryReducer } from '../_reducers/category.reducer';
+import { recipeReducer } from '../_reducers/recipe.reducer';
 
 const rootReducer = combineReducers({
   alert,
   authentication,
   form: formReducer,
   registration,
-  viewCategoryReducer,
-  editCategoryReducer,
-  deleteCategoryReducer,
-  viewRecipeReducer,
-  editRecipeReducer,
+  categoryReducer,
+  recipeReducer,
 });
 
 export default rootReducer;

@@ -22,7 +22,6 @@ export function createCategory(category) {
     return createCategoryAPICall(category).then(
       () => {
         dispatch(success());
-        window.location.reload();
         dispatch(alertActions.success('Category created successfully'));
       },
       (error) => {
@@ -34,14 +33,15 @@ export function createCategory(category) {
   };
 }
 
-export function viewCategory(pageNum = null) {
+export function viewCategory(value = null) {
   function request() {
     return { type: categoryConstants.VIEW_ALL_CATEGORIES_REQUEST };
   }
   function success(response) {
+    console.log('::::::::::::::IN success :::::::::::::', response.data);
     return {
       type: categoryConstants.VIEW_ALL_CATEGORIES_SUCCESS,
-      payload: response,
+      payload: response.data,
     };
   }
   function failure(error) {
@@ -49,10 +49,11 @@ export function viewCategory(pageNum = null) {
   }
   return (dispatch) => {
     dispatch(request());
-    return getCategoriesAPICall(pageNum).then(
+    return getCategoriesAPICall(value).then(
       (response) => {
-        dispatch(success(response.data));
-        console.log('^^^^%%%%%%%%view%%&&&&&&&', response.data);
+        dispatch(success(response));
+        console.log('^^^^%%%%%%%%view categories%%&&&&&&&', response.data);
+
         dispatch(alertActions.success('Your categories'));
       },
       (error) => {
@@ -94,7 +95,7 @@ export function editCategory(category) {
     return editCategoryAPICall(category).then(
       (response) => {
         dispatch(success());
-        window.location.reload();
+        // window.location.reload();
         console.log('^^^^%%%%%%%%edit%%&&&&&&&', response.data);
         dispatch(alertActions.success('Your categories'));
       },
@@ -122,7 +123,7 @@ export function deleteCategory(category) {
     return deleteCategoryAPICall(category).then(
       () => {
         dispatch(success());
-        window.location.reload();
+        // window.location.reload();
         dispatch(alertActions.success('Category deleted successfully'));
       },
       (error) => {

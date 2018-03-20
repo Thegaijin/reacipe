@@ -154,10 +154,10 @@ input {
   text-align: right;
 }
 
-/* .details {
-  background-color: lightgrey;
-  width: 20rem;
-  border: 0.5rem solid green;
-  padding-top: 1rem;
-  margin-left: 1rem;
-} */
+.details {
+  width: 22rem;
+  padding: 10px;
+  border: 3px solid gray;
+  margin: 0;
+  border-radius: inherit;
+}

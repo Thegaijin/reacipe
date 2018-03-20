@@ -49,20 +49,22 @@ export function login(user) {
 
   return (dispatch) => {
     dispatch(request(user));
-    return loginuserAPIcall(user.username, user.password).then(
-      (response) => {
-        dispatch(success(response.data));
-        localStorage.setItem('token', response.data.access_token);
-        console.log('???????????????????????????', localStorage.getItem('token'));
-        history.push('/dashboard');
-        dispatch(alertActions.success('Logged in successfully'));
-      },
-      (error) => {
-        console.log('%%%%%%%%%%%%%%%%%%%%%%%%%', error.data);
-        dispatch(failure(error));
-        // dispatch(alertActions.error(error));
-      },
-    );
+    return loginuserAPIcall(user.username, user.password)
+      .then(
+        (response) => {
+          dispatch(success(response.data));
+          localStorage.setItem('token', response.data.access_token);
+          dispatch(alertActions.success(response.data.message));
+        },
+        (error) => {
+          console.log('%%%%%%%%%%%%%%%%%%%%%%%%%', error.data);
+          dispatch(failure(error));
+          // dispatch(alertActions.error(error));
+        },
+      )
+      .then(() => {
+        window.location.href = '/dashboard';
+      });
   };
 }
 

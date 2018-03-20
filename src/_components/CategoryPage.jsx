@@ -27,9 +27,11 @@ class CategoryPage extends React.Component {
   };
 
   handleSubmit(values) {
+    const { getCategories } = this.props;
     console.log('>>>>>>>>>>', values);
     console.log('/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*', values.category_name, values.description);
     this.props.createCategory(values);
+    getCategories();
   }
   render() {
     return (

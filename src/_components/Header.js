@@ -14,12 +14,32 @@ class Header extends React.Component {
     return (
       <header>
         <div className="container">
-          <nav className="navbar navbar-inverse navbar-fixed-top menu">
-            <ul className="menu">
-              <li onClick={this.logOut} className="active">
-                <Link to="/">Logout</Link>
-              </li>
-            </ul>
+          <nav className="navbar navbar-fixed-top">
+            <div className="container">
+              <div className="navbar-header">
+                <button
+                  type="button"
+                  className="navbar-toggle collapsed"
+                  data-toggle="collapse"
+                  data-target="#navbar"
+                  aria-expanded="false"
+                  aria-controls="navbar"
+                >
+                  <span className="sr-only">Toggle navigation</span>
+                  <span className="icon-bar" />
+                  <span className="icon-bar" />
+                  <span className="icon-bar" />
+                </button>
+                <a className="navbar-brand" href="#" />
+              </div>
+              <div id="navbar" className="navbar-collapse collapse">
+                <ul className="nav navbar-nav navbar-right">
+                  <li onClick={this.logOut} className="active">
+                    <Link to="/">Logout</Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </nav>
         </div>
       </header>

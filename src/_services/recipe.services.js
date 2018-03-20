@@ -8,19 +8,17 @@ export function createRecipeAPIcall(categoryId, recipe) {
   return axios.post(`${apiUrl}/recipes/${categoryId}/`, recipe, { headers });
 }
 
-export function getRecipesAPICall(categoryId, pageNum = null) {
-  console.log('%&&%&%&%&%&%&%recipe get&%&&%&%&%&&%%&&%', categoryId);
-  if (typeof pageNum === 'number' && pageNum > 0) {
-    return axios.get(`${apiUrl}/recipes/${categoryId}/?page=${pageNum}`, { headers });
+export function getRecipesAPICall(categoryId, value = null) {
+  if (typeof value === 'number' && value > 0) {
+    return axios.get(`${apiUrl}/recipes/${categoryId}/?page=${value}`, { headers });
+  }
+  if (typeof value === 'string') {
+    return axios.get(`${apiUrl}/recipes/${categoryId}/?q=${value}`, { headers });
   } else {
     return axios.get(`${apiUrl}/recipes/${categoryId}/`, { headers });
   }
 }
 export function editRecipeAPICall(recipe) {
-  console.log('recipe recipe recipe recipe', recipe);
-  console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXX', recipe.category);
-  console.log('YYYYYYYYYYYYYYYYYYYYYYYYYYY', recipe.recipe_id);
-  console.log('YYYYYYYYYYYYYYYYYYYYYYYYYYY', recipe.ingredients);
   return axios.put(`${apiUrl}/recipes/${recipe.category}/${recipe.recipe_id}/`, recipe, {
     headers,
   });

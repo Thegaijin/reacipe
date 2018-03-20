@@ -18,6 +18,7 @@ import { SearchRecipePage } from '../_components/SearchRecipePage';
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
+    console.log('&&&&&&&&&&&&&&&&&&&&&&&&&&&& dash constructor');
     this.props.viewCategory();
     this.props.viewRecipes();
     this.state = {
@@ -30,11 +31,29 @@ class Dashboard extends React.Component {
       categoryId: 0,
     };
   }
+
+  // componentWillMount() {
+  //   console.log('This is the dashboard token^^^^^^^^^^^', this.state.categories);
+  //   if (localStorage.getItem('token')) {
+  //     this.props.viewCategory();
+  //   }
+  // }
+
+  // componentDidUpdate(nextProps) {
+  //   if (this.props !== nextProps) {
+  //     console.log('!!!!!!!!!!!!!!! it updated!');
+  //   }
+  // }
+  reloadCategories = () => {
+    this.props.viewCategory();
+  };
+
   getCategory = (category) => {
     this.setState({
       categoryOpen: !this.state.categoryOpen,
     });
     this.props.currentCategory(category);
+    // this.getCategories();
   };
 
   getRecipe = (recipe) => {
@@ -51,7 +70,9 @@ class Dashboard extends React.Component {
         {
           label: 'Yes',
           onClick: () => {
-            this.props.deleteCategory(category);
+            this.props.deleteCategory(category).then(() => {
+              this.reloadCategories();
+            });
           },
         },
         {
@@ -220,8 +241,8 @@ class Dashboard extends React.Component {
         <div className="row">
           {/* Categories */}
           <div className="col-sm-4">
-            Categories
-            <CategoryPage />
+            <h4>Categories</h4>
+            <CategoryPage getCategories={this.reloadCategories} />
             <br />
             Search Categories
             <SearchCategoryPage />
@@ -301,11 +322,11 @@ class Dashboard extends React.Component {
               {!!categoryOpen && <EditCategory />}
 
               <div>
-                recipes
+                <h4>Recipes</h4>
                 <br />
                 <div className="recipe-search">
                   Search Recipes
-                  <SearchRecipePage />
+                  <SearchRecipePage categoryId={this.state.categoryId} />
                 </div>
                 <br />
                 <div className="container">
@@ -376,8 +397,9 @@ class Dashboard extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const { categories, categoryPages, categoryPage } = state.viewCategoryReducer;
-  const { recipes, recipePages, recipePage, categoryId } = state.viewRecipeReducer;
+  console.log(state, 'statatttttttt');
+  const { categories, categoryPages, categoryPage } = state.categoryReducer;
+  const { recipes, recipePages, recipePage, categoryId } = state.recipeReducer;
   console.log(
     '@@@@@@@@@@@@################++++++++++++++++>>>>>',
     categories,
@@ -388,7 +410,7 @@ function mapStateToProps(state) {
     recipePage,
   );
   console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>', state.categories);
-  console.log('@@@@@@@@@@@@@@@@@@@recipes@@@@@@@@@@@@@@@@@>>>>>', state.viewRecipeReducer.recipes);
+  console.log('@@@@@@@@@@@@@@@@@@@recipes@@@@@@@@@@@@@@@@@>>>>>', state.recipeReducer.recipes);
   return {
     categories: categories,
     recipes: recipes,

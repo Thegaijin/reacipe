@@ -18,7 +18,6 @@ class SearchCategoryPage extends React.Component {
     console.log('This is the id*************', values.category_name);
     const search = values.category_name;
     this.props.viewCategory(search);
-    // this.props.viewCategory(search);
   }
 
   render() {

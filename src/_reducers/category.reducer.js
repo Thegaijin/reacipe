@@ -1,6 +1,6 @@
 import { categoryConstants } from '../_constants/category.constants';
 
-export function createCategory(state = [], action) {
+export function categoryReducer(state = [], action) {
   switch (action.type) {
     case categoryConstants.CREATE_CATEGORY_REQUEST:
       return {
@@ -14,31 +14,23 @@ export function createCategory(state = [], action) {
       };
     case categoryConstants.CREATE_CATEGORY_FAILURE:
       return {};
-    default:
-      return state;
-  }
-}
-
-export function viewCategoryReducer(state = [], action) {
-  switch (action.type) {
     case categoryConstants.VIEW_ALL_CATEGORIES_REQUEST:
       return {
         loading: true,
       };
     case categoryConstants.VIEW_ALL_CATEGORIES_SUCCESS:
-      console.log('$$$$$$$$$$$$$$$$categories$$$$$$$$@@@@@@@@@@========>>>>>>>>', action);
+      console.log('$$$$$$$$$$$$$$$$login in $$$$$$$$@@@@@@@@@@========>>>>>>>>', action);
+      console.log('$$$$$$$$$$$$$$$$categories$$$$$$$$@@@@@@@@@@========>>>>>>>', action.payload);
+      // history.push('/dashboard');
+      // return {
+      //   ...state,
+      //   ...action.payload,
+      // };
       return action.payload;
     case categoryConstants.VIEW_ALL_CATEGORIES_FAILURE:
       return {
         error: action.error,
       };
-    default:
-      return state;
-  }
-}
-
-export function editCategoryReducer(state = [], action) {
-  switch (action.type) {
     case categoryConstants.EDIT_CATEGORY_REQUEST:
       console.log('@@@@@@@@@@@@@@@@@@@@@#######################', action);
       return {
@@ -59,13 +51,6 @@ export function editCategoryReducer(state = [], action) {
         ...state,
         currentCategory: action.userCategory,
       };
-    default:
-      return state;
-  }
-}
-
-export function deleteCategoryReducer(state = [], action) {
-  switch (action.type) {
     case categoryConstants.DELETE_CATEGORY_REQUEST:
       console.log('@@@@@@@@@@@@@@@@@@@@@delete#######################', action);
       return {

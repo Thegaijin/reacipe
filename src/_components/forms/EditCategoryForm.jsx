@@ -80,7 +80,7 @@ EditCategoryForm.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    currentCategory: state.editCategoryReducer.currentCategory,
+    currentCategory: state.categoryReducer.currentCategory,
   };
 }
 

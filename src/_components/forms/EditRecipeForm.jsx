@@ -82,7 +82,7 @@ EditRecipeForm.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    currentRecipe: state.editRecipeReducer.currentRecipe,
+    currentRecipe: state.recipeReducer.currentRecipe,
   };
 }
 
