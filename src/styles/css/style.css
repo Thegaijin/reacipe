@@ -161,3 +161,7 @@ input {
   margin: 0;
   border-radius: inherit;
 }
+
+.welcome-h3 {
+  color: #00cc99;
+}

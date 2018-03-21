@@ -16,14 +16,8 @@ class EditRecipe extends React.Component {
     };
   }
   handleSubmit(values) {
-    console.log('>>>>>>>>>>', values);
-    console.log(
-      '/*/*/*/*/*/*/*edit edit/*/*/*/*/*/*/*/*/*',
-      values.recipe_name,
-      values.ingredients,
-      this.props,
-    );
     this.props.editRecipe(values);
+    this.props.getRecipes();
   }
   render() {
     return (

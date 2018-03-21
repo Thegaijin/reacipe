@@ -29,7 +29,6 @@ export function createRecipe(categoryId, recipe) {
     return createRecipeAPIcall(categoryId, recipe).then(
       () => {
         dispatch(success());
-        window.location.reload();
         dispatch(alertActions.success('recipe created successfully'));
       },
       (error) => {

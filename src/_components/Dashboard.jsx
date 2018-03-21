@@ -45,6 +45,9 @@ class Dashboard extends React.Component {
     this.props.viewCategory();
   };
 
+  reloadRecipes = () => {
+    this.props.viewRecipes();
+  }
   getCategory = (category) => {
     this.setState({
       categoryOpen: !this.state.categoryOpen,
@@ -81,10 +84,8 @@ class Dashboard extends React.Component {
   };
 
   viewACategoriesRecipes = (categoryId) => {
-    console.log('%%%%%%%%$$$$$$$$$$$$++++++>>>>>>>', categoryId);
     this.props.viewRecipes(categoryId);
     this.setState({ categoryId: categoryId });
-    console.log('%%%%%%%%$$$$$$state$$$$$$++++++>>>>>>>', this.state.categoryId);
   };
 
   deleteARecipe = (recipe) => {
@@ -110,16 +111,13 @@ class Dashboard extends React.Component {
     this.setState({ currentCategoryPage: pageNum });
   };
 
-  // const { categoryId } = this.state.categoryId;
   selectedRecipePage = (pageNum) => {
-    // console.log('This is the selected recipe page_-_-_-_-->>>>>', categoryId, pageNum);
-    console.log('this is the recipe page --->>>>>', pageNum);
     const categoryId = this.state.categoryId;
-    console.log('this is the category ID &&&&&--->>>>>', categoryId);
     this.props.viewRecipes(categoryId, pageNum);
     this.setState({ currentRecipePage: pageNum });
-    console.log('This is the selected current page_-_-_-_-->>>>>', this.state.currentRecipePage);
   };
+
+  // Category Pagination
   categoryPagination = (categoryPages) => {
     const theItems = [];
     if (categoryPages) {
@@ -171,6 +169,7 @@ class Dashboard extends React.Component {
     return theItems;
   };
 
+  // Recipe Pagination
   recipePagination = (recipePages) => {
     const theItems = [];
     if (recipePages) {
@@ -224,16 +223,13 @@ class Dashboard extends React.Component {
 
   render() {
     const { categories, recipes, categoryPages, recipePages } = this.props;
-    console.log('***************************============>', categories);
     const { categoryOpen, recipeOpen } = this.state;
-    console.log('_-_-_-_-_-_-_-_-_-', this.state.categoryOpen);
-    console.log('*-*-*-*-*-*-*-*-*-', this.state.recipeOpen);
     return (
       <Layout>
         <div>
           <br />
           <br />
-          <h3>Welcome to Yummy Recipes</h3>
+          <h3 className="welcome-h3">Welcome to Yummy Recipes</h3>
         </div>
         <div className="row">
           {/* Categories */}
@@ -282,7 +278,7 @@ class Dashboard extends React.Component {
                             </td>
                             <td data-id={category.category_id}>
                               <div>
-                                <RecipePage categoryId={category.category_id} />
+                                <RecipePage categoryId={category.category_id} />  
                               </div>
                             </td>
                             <td data-id={category.category_id}>
@@ -316,7 +312,7 @@ class Dashboard extends React.Component {
           {/* Recipes */}
           <div className="col-sm-8">
             <div>
-              {!!categoryOpen && <EditCategory />}
+              {!!categoryOpen && <EditCategory getCategories={this.reloadCategories} />}
 
               <div>
                 <h4>Recipes</h4>
@@ -371,7 +367,7 @@ class Dashboard extends React.Component {
                           </div>
                         ))
                       ) : (
-                        <div> No recipes </div>
+                        <div> No Recipes </div>
                       )}
                       <div className="container-fluid">
                         <div className="text-centered">
@@ -397,17 +393,6 @@ function mapStateToProps(state) {
   console.log(state, 'statatttttttt');
   const { categories, categoryPages, categoryPage } = state.categoryReducer;
   const { recipes, recipePages, recipePage, categoryId } = state.recipeReducer;
-  console.log(
-    '@@@@@@@@@@@@################++++++++++++++++>>>>>',
-    categories,
-    categoryPages,
-    categoryPage,
-    recipes,
-    recipePages,
-    recipePage,
-  );
-  console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@>>>>>', state.categories);
-  console.log('@@@@@@@@@@@@@@@@@@@recipes@@@@@@@@@@@@@@@@@>>>>>', state.recipeReducer.recipes);
   return {
     categories: categories,
     recipes: recipes,

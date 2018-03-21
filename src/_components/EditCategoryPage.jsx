@@ -16,13 +16,10 @@ class EditCategory extends React.Component {
     };
   }
   handleSubmit(values) {
-    console.log('>>>>>>>>>>', values);
-    console.log(
-      '/*/*/*/*/*/*/*edit edit/*/*/*/*/*/*/*/*/*',
-      values.category_name,
-      values.description,
-    );
+    const { getCategories } = this.props;
     this.props.editCategory(values);
+    getCategories();
+    window.location.assign('/dashboard');
   }
   render() {
     return (

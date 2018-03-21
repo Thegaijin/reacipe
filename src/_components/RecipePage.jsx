@@ -25,15 +25,8 @@ class RecipePage extends React.Component {
   };
 
   handleSubmit(values) {
-    console.log('This is the id*************', this.props.categoryId);
-    console.log('>>>>>>>>>>', values);
-    console.log(
-      '/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*',
-      values.recipename,
-      values.ingredrients,
-      this.props.categoryId,
-    );
     this.props.createRecipe(this.props.categoryId, values).then(() => {});
+    // this.props.getRecipes();
   }
   render() {
     return (
