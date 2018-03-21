@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiUrl = 'https://recipiapi.herokuapp.com';
+const apiUrl = 'https://recipiapi.herokuapp.com/';
 const headers = { Authorization: `Bearer ${localStorage.getItem('token')}` };
 
 export function registeruserAPIcall(user) {
