@@ -71,7 +71,7 @@ describe('<Dashboard />', () => {
   const props = {
     categories: [],
     recipes: [],
-    categoryPages: 1,
+    pages: 1,
     recipePages: 1,
     currentCategoryPage: 1,
     currentRecipePage: 1,
