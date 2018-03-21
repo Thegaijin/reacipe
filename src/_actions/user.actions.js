@@ -28,9 +28,8 @@ export function register(user) {
         dispatch(alertActions.success('Registration successful'));
       },
       (error) => {
-        console.log('%%%%%%%%%%%%%%%%%%%%%%%%%', error.data);
-        dispatch(failure(error));
-        dispatch(alertActions.error(error));
+        dispatch(failure(error.data));
+        dispatch(alertActions.error(error.data));
       },
     );
   };

@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const apiUrl = 'https://recipiapi.herokuapp.com/';
+// const apiUrl = 'http://127.0.0.1:5000/api/v1/';
+const apiUrl = 'https://recipiapi.herokuapp.com/api/v1/';
+
 const headers = { Authorization: `Bearer ${localStorage.getItem('token')}` };
 
 export function registeruserAPIcall(user) {
@@ -12,6 +14,5 @@ export function loginuserAPIcall(username, password) {
 }
 
 export function logoutuserAPIcall() {
-  console.log("Let's log out^>^>^>^>^>^>^>^>^>^>^>^>^>^>");
   return axios.delete(`${apiUrl}auth/logout/`, { headers });
 }

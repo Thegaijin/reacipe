@@ -84,8 +84,10 @@ class Dashboard extends React.Component {
   };
 
   viewACategoriesRecipes = (categoryId) => {
+    console.log('%%%%%%%%$$$$$$$$$$$$++++++>>>>>>>', categoryId);
     this.props.viewRecipes(categoryId);
     this.setState({ categoryId: categoryId });
+    console.log('%%%%%%%%$$$$$$state$$$$$$++++++>>>>>>>', this.state.categoryId);
   };
 
   deleteARecipe = (recipe) => {

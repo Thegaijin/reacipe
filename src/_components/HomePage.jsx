@@ -7,13 +7,13 @@ const HomePage = () => {
       <div className="container my-auto">
         <div className="row">
           <div className="col-md-offset-4 whiteback">
-            <div className="col-lg-10 mx-auto">
+            <div className="col-lg-12 mx-auto">
               <h1 className="text-uppercase">
                 <strong>Welcome to Yummy Recipes</strong>
               </h1>
               <hr />
             </div>
-            <div className="col-lg-8 mx-auto">
+            <div className="col-lg-12 mx-auto">
               <p className="text-faded mb-5">
                 Create and share your savory ideas with us. Lets whet our palettes together. Happy
                 creating

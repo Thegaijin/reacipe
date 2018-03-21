@@ -1,28 +1,32 @@
 import axios from 'axios';
 
-const apiUrl = 'https://recipiapi.herokuapp.com';
-const headers = { Authorization: `Bearer ${localStorage.getItem('token')}` };
-// axios.commons = { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } };
+// const apiUrl = 'http://127.0.0.1:5000/api/v1/';
+const apiUrl = 'https://recipiapi.herokuapp.com/api/v1/';
+// const headers = { Authorization: `Bearer ${localStorage.getItem('token')}` };
 
 export function createRecipeAPIcall(categoryId, recipe) {
-  return axios.post(`${apiUrl}/recipes/${categoryId}/`, recipe, { headers });
+  const headers = { Authorization: `Bearer ${localStorage.getItem('token')}` };
+  return axios.post(`${apiUrl}recipes/${categoryId}/`, recipe, { headers });
 }
 
 export function getRecipesAPICall(categoryId, value = null) {
+  const headers = { Authorization: `Bearer ${localStorage.getItem('token')}` };
   if (typeof value === 'number' && value > 0) {
-    return axios.get(`${apiUrl}/recipes/${categoryId}/?page=${value}`, { headers });
+    return axios.get(`${apiUrl}recipes/${categoryId}/?page=${value}`, { headers });
   }
   if (typeof value === 'string') {
-    return axios.get(`${apiUrl}/recipes/${categoryId}/?q=${value}`, { headers });
+    return axios.get(`${apiUrl}recipes/${categoryId}/?q=${value}`, { headers });
   } else {
-    return axios.get(`${apiUrl}/recipes/${categoryId}/`, { headers });
+    return axios.get(`${apiUrl}recipes/${categoryId}/`, { headers });
   }
 }
 export function editRecipeAPICall(recipe) {
-  return axios.put(`${apiUrl}/recipes/${recipe.category}/${recipe.recipe_id}/`, recipe, {
+  const headers = { Authorization: `Bearer ${localStorage.getItem('token')}` };
+  return axios.put(`${apiUrl}recipes/${recipe.category}/${recipe.recipe_id}/`, recipe, {
     headers,
   });
 }
 export function deleteRecipeAPICall(recipe) {
-  return axios.delete(`${apiUrl}/recipes/${recipe.category}/${recipe.recipe_id}/`, { headers });
+  const headers = { Authorization: `Bearer ${localStorage.getItem('token')}` };
+  return axios.delete(`${apiUrl}recipes/${recipe.category}/${recipe.recipe_id}/`, { headers });
 }
