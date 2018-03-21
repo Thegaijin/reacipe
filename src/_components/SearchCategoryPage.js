@@ -14,8 +14,6 @@ class SearchCategoryPage extends React.Component {
   }
 
   handleSubmit(values) {
-    console.log('This is the id*************', values);
-    console.log('This is the id*************', values.category_name);
     const search = values.category_name;
     this.props.viewCategory(search);
   }

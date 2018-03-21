@@ -56,17 +56,18 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 
-import Dashboard from '../../_components/Dashboard';
+import { Dashboard } from '../../_components/Dashboard';
 
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('<Dashboard />', () => {
   const store = configureMockStore([thunk])({
-    user: {
-      'Access Token': '12345trewdfgw23456wedfvcdsq234543wddsqw345',
+    authentication: {},
+    categoryReducer: {
+      categories: [],
     },
+    recipeReducer: {},
   });
-
   const props = {
     categories: [],
     recipes: [],
