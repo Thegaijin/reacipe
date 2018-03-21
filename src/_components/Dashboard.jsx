@@ -19,7 +19,7 @@ class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     console.log('&&&&&&&&&&&&&&&&&&&&&&&&&&&& dash constructor');
-    this.props.viewCategory();
+    // this.props.viewCategory();
     this.props.viewRecipes();
     this.state = {
       categories: [],
@@ -32,11 +32,8 @@ class Dashboard extends React.Component {
     };
   }
 
-  componentWillMount() {
-    console.log('This is the dashboard token^^^^^^^^^^^', this.state.categories);
-    if (localStorage.getItem('token')) {
-      this.props.viewCategory();
-    }
+  componentDidMount() {
+    this.props.viewCategory();
   }
 
   componentDidUpdate(nextProps) {

@@ -3,8 +3,7 @@ node_js:
   - "8.9.4"
 
 script:
-  - npm install coveralls
-  - yarn test --coverage 
+  - npm test -- --coverage 
 
 after_success:
   - coveralls < coverage/lcov.info
