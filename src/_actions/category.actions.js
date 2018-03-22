@@ -20,14 +20,14 @@ export function createCategory(category) {
   return (dispatch) => {
     dispatch(request(category));
     return createCategoryAPICall(category).then(
-      () => {
+      (response) => {
         dispatch(success());
-        dispatch(alertActions.success('Category created successfully'));
+        dispatch(alertActions.success(response.data.message));
       },
       (error) => {
-        console.log('%%%%%%%%%%%%%create%%%%%%%%%%%%', error.data);
+        // console.log('%%%%%%%%%%%%%create%%%%%%%%%%%%', error.data);
         dispatch(failure(error));
-        // dispatch(alertActions.error(error));
+        dispatch(alertActions.error(error.response.data.message));
       },
     );
   };
@@ -54,12 +54,12 @@ export function viewCategory(value = null) {
         dispatch(success(response));
         console.log('^^^^%%%%%%%%view categories%%&&&&&&&', response.data);
 
-        dispatch(alertActions.success('Your categories'));
+        // dispatch(alertActions.success(response.data.message));
       },
       (error) => {
         console.log('%%%%%%%%%%%%view%%%%%%%%%%%%%', error.data);
         dispatch(failure(error));
-        // dispatch(alertActions.error(error));
+        dispatch(alertActions.error(error.response.data.message));
       },
     );
   };
@@ -97,12 +97,12 @@ export function editCategory(category) {
         dispatch(success());
         // window.location.reload();
         console.log('^^^^%%%%%%%%edit%%&&&&&&&', response.data);
-        dispatch(alertActions.success('Your categories'));
+        dispatch(alertActions.success(response.data.message));
       },
       (error) => {
         console.log('%%%%%%%%%%%%edit%%%%%%%%%%%%%', error.data);
         dispatch(failure(error));
-        // dispatch(alertActions.error(error));
+        dispatch(alertActions.error(error.response.data.message));
       },
     );
   };
@@ -121,15 +121,15 @@ export function deleteCategory(category) {
   return (dispatch) => {
     dispatch(request(category));
     return deleteCategoryAPICall(category).then(
-      () => {
+      (response) => {
         dispatch(success());
         // window.location.reload();
-        dispatch(alertActions.success('Category deleted successfully'));
+        dispatch(alertActions.success(response.data.message));
       },
       (error) => {
         console.log('%%%%%%%%%%%%%delete%%%%%%%%%%%%', error.data);
         dispatch(failure(error));
-        // dispatch(alertActions.error(error));
+        dispatch(alertActions.error(error.response.data.message));
       },
     );
   };

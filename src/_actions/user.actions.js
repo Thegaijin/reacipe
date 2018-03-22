@@ -28,8 +28,8 @@ export function register(user) {
         dispatch(alertActions.success('Registration successful'));
       },
       (error) => {
-        dispatch(failure(error.data));
-        dispatch(alertActions.error(error.data));
+        dispatch(failure(error));
+        dispatch(alertActions.error(error.response.data.message));
       },
     );
   };
@@ -56,9 +56,8 @@ export function login(user) {
         dispatch(alertActions.success(response.data.message));
       },
       (error) => {
-        console.log('%%%%%%%%%%%%%%%%%%%%%%%%%', error.data);
         dispatch(failure(error));
-        // dispatch(alertActions.error(error));
+        dispatch(alertActions.error(error.response.data.message));
       },
     );
   };
@@ -87,7 +86,7 @@ export function logout() {
       (error) => {
         console.log('%%%%%%%%%%%%%%%%%%%%%%%%%', error.data);
         dispatch(failure(error));
-        // dispatch(alertActions.error(error));
+        dispatch(alertActions.error(error.response.data.message));
       },
     );
   };

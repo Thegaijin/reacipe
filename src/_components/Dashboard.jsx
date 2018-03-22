@@ -34,6 +34,7 @@ class Dashboard extends React.Component {
 
   componentDidMount() {
     this.props.viewCategory();
+    this.props.viewRecipes();
   }
 
   componentDidUpdate(nextProps) {
@@ -47,7 +48,7 @@ class Dashboard extends React.Component {
 
   reloadRecipes = () => {
     this.props.viewRecipes();
-  }
+  };
   getCategory = (category) => {
     this.setState({
       categoryOpen: !this.state.categoryOpen,
@@ -239,7 +240,7 @@ class Dashboard extends React.Component {
             <h4>Categories</h4>
             <CategoryPage getCategories={this.reloadCategories} />
             <br />
-            Search Categories
+            <p> Search Categories</p>
             <SearchCategoryPage />
             <br />
             {categories && categories.length > 0 ? (
@@ -280,7 +281,7 @@ class Dashboard extends React.Component {
                             </td>
                             <td data-id={category.category_id}>
                               <div>
-                                <RecipePage categoryId={category.category_id} />  
+                                <RecipePage categoryId={category.category_id} />
                               </div>
                             </td>
                             <td data-id={category.category_id}>
@@ -369,7 +370,10 @@ class Dashboard extends React.Component {
                           </div>
                         ))
                       ) : (
-                        <div> No Recipes </div>
+                        <div className="no-recipes">
+                          {' '}
+                          <h4>No Recipes</h4>{' '}
+                        </div>
                       )}
                       <div className="container-fluid">
                         <div className="text-centered">
