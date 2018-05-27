@@ -1,8 +1,9 @@
 import axios from 'axios';
 
 // const apiUrl = 'http://127.0.0.1:5000/api/v1/';
-const apiUrl = 'https://recipiapi.herokuapp.com/api/v1/';
+// const apiUrl = 'https://recipiapi.herokuapp.com/api/v1/';
 // const headers = { Authorization: `Bearer ${localStorage.getItem('token')}` };
+const apiUrl = 'http://api.thegaijin.xyz/api/v1/';
 
 export function createRecipeAPIcall(categoryId, recipe) {
   const headers = { Authorization: `Bearer ${localStorage.getItem('token')}` };
