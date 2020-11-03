@@ -1,10 +1,18 @@
 language: node_js
 node_js:
-  - "8.9.4"
-
+- 8.9.4
 script:
   - npm install coveralls
-  - yarn test --coverage 
-
+  - yarn test --coverage
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+  - sonar-scanner
 after_success:
   - coveralls < coverage/lcov.info
+env:
+  global:
+    secure: OdXewfJLwUSIz2jBgRCcrqrUoOPyKHVSELLD5HkrrbOTbhBdIhHNQzAPtgQjeYeObWsCYAwgwCcsHn9Lh6srBg9OuQfmtG1yav3kOPA3YLNun+RHBo+vlzrl0Btp+JExx0YrCb9lLx7Delt6UevGNSB4UXmck9xpK0sd7Y8GkI0CcW+Nlv+DiNvLCdlKmf2D0YgcYtGvkC2t5VD+8ssOM7iSIKBiu/ocPSQ0Gp1xot6Pn2r/NQbIXfgz8OLJS6rYu+5kHGwQ1ufTEzsVhJBnsyO7fDmTO3UlKal11Q918S0Gm2bu57PgyFIT8HY/mp8lWD9d+NBLJk6Iwe3+ysM8MOLTEV/WrMaZzYnusHPj8b8qVsHIKvd0xsXpx2f7pfJfDq9fZn/sGd2RfQO81vXu6iZV/+jAf3QEF+GafqDcfCoKCu3vUB+p/76MZtuHo/TeoE6cxbvHzb/GkxmzOdKuutmTa4L5VjQWrPbe/ehvteIB7MX78gtRXAv+4g8YM2kF7HzTOTEyuXzF8k0o/WETXpsNUXHUBc04dExQIC+fWPe4Io8DKFAZHpzUaXYqJTDY/7SCKUMg4G8XH/54u+JURvnppmnoM+5YQfO8seF2ULYw/CfmUky5P3vNsj1opJ/Es9eXnf2oLisrIoWyybs+bWFonT8eXBgHBSHw89yq694=
+addons:
+  sonarcloud:
+    organization: "thegaijin"
+    token:
+      secure: "OdXewfJLwUSIz2jBgRCcrqrUoOPyKHVSELLD5HkrrbOTbhBdIhHNQzAPtgQjeYeObWsCYAwgwCcsHn9Lh6srBg9OuQfmtG1yav3kOPA3YLNun+RHBo+vlzrl0Btp+JExx0YrCb9lLx7Delt6UevGNSB4UXmck9xpK0sd7Y8GkI0CcW+Nlv+DiNvLCdlKmf2D0YgcYtGvkC2t5VD+8ssOM7iSIKBiu/ocPSQ0Gp1xot6Pn2r/NQbIXfgz8OLJS6rYu+5kHGwQ1ufTEzsVhJBnsyO7fDmTO3UlKal11Q918S0Gm2bu57PgyFIT8HY/mp8lWD9d+NBLJk6Iwe3+ysM8MOLTEV/WrMaZzYnusHPj8b8qVsHIKvd0xsXpx2f7pfJfDq9fZn/sGd2RfQO81vXu6iZV/+jAf3QEF+GafqDcfCoKCu3vUB+p/76MZtuHo/TeoE6cxbvHzb/GkxmzOdKuutmTa4L5VjQWrPbe/ehvteIB7MX78gtRXAv+4g8YM2kF7HzTOTEyuXzF8k0o/WETXpsNUXHUBc04dExQIC+fWPe4Io8DKFAZHpzUaXYqJTDY/7SCKUMg4G8XH/54u+JURvnppmnoM+5YQfO8seF2ULYw/CfmUky5P3vNsj1opJ/Es9eXnf2oLisrIoWyybs+bWFonT8eXBgHBSHw89yq694=" # encrypted value of your token
